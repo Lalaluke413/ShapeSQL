@@ -279,4 +279,3 @@ filters out the rows whose predicate is `FALSE` or `UNKNOWN`, then projects the
 | `Ada` |
 
 No row order is specified because the query has no `ORDER BY`.
-

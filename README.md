@@ -25,27 +25,22 @@ a deliberate boundary: a query describes how finite tabular input is reshaped
 into finite tabular output. Application logic determines which question to
 ask.
 
-That boundary serves a second goal. A ShapeSQL query should compile to an
-explicit, statically typed, acyclic dataflow graph that can first be interpreted
-in software and later lowered to a hardware-oriented execution model.
+That boundary serves a second goal. A ShapeSQL query should have an explicit,
+statically typed relational meaning represented by a finite, acyclic Shape IR
+graph.
 
-## Proposed compilation model
+## Language and IR model
 
-ShapeSQL separates the meaning of a query from the mechanism used to execute
-it:
+ShapeSQL separates a query's source spelling from its relational meaning:
 
 1. **ShapeSQL source** expresses a query over flat relations.
 2. **Shape IR** represents its typed relational meaning.
-3. **Optimized Shape IR** applies semantics-preserving rewrites.
-4. **Execution IR** expresses lower-level streaming, routing, and keyed-state
-   operations.
-5. A **software interpreter** or future **CGRA implementation** executes the
-   resulting plan.
+3. Implementations may apply semantics-preserving rewrites while remaining in
+   Shape IR.
 
-Relational operators such as joins and grouping belong to Shape IR. Physical
-mechanisms such as partitioning, buffering, and the Keyed State Unit belong to
-Execution IR. This keeps the language independent of any one software
-algorithm or hardware design.
+Relational operators such as joins and grouping belong to Shape IR.
+Parsing algorithms, optimization strategy, and evaluation mechanisms are
+implementation concerns outside the specification.
 
 ## Draft v0.1 scope
 
@@ -71,7 +66,7 @@ feature boundary.
 
 ```text
 docs/
-  specification/       Normative language and execution contracts
+  specification/       Normative ShapeSQL source and Shape IR contracts
   design/              Non-normative proposals and design rationale
 src/                    Future reference implementation
 tests/                  Future executable conformance examples
@@ -95,10 +90,10 @@ unbounded computation.
 The current work is to establish:
 
 1. the exact ShapeSQL language subset and observable query behavior;
-2. the typed relational Shape IR;
-3. a reference software interpreter;
-4. a lower, hardware-first Execution IR; and
-5. a software executor for that IR before attempting an FPGA or CGRA design.
+2. the lexical structure and grammar of ShapeSQL source;
+3. its type rules, null semantics, and multiplicity semantics;
+4. the typed relational Shape IR; and
+5. a corpus of accepted and rejected queries with expected results or errors.
 
 ## License
 

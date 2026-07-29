@@ -34,15 +34,13 @@ This specification uses the following terms:
 - **bag**: an unordered collection that may contain duplicate rows.
 - **expression**: a computation that produces one scalar value from literals
   and values visible in its evaluation environment.
-- **implementation**: a front end, planner, executor, or combined system that
+- **implementation**: a front end, Shape IR consumer, or combined system that
   claims conformance to some part of this specification.
 - **host environment**: the system that supplies input relations and consumes
   results. It may also provide catalog, storage, transaction, and authorization
   services outside ShapeSQL.
 - **Shape IR**: the planned, statically typed relational representation of a
   ShapeSQL query.
-- **Execution IR**: a lower-level representation of the streaming and stateful
-  mechanisms used to execute Shape IR.
 - **observable behavior**: a result schema, result bag, required result order,
   or specified error visible outside the implementation.
 
@@ -65,11 +63,11 @@ A conforming front end:
 - MUST report an error in the phase required by the specification when that
   phase is defined.
 
-### 4.2 Execution conformance
+### 4.2 Shape IR evaluation conformance
 
-A conforming executor:
+A conforming Shape IR evaluator:
 
-- MUST accept every valid plan in the claimed IR version;
+- MUST accept every valid graph in the claimed Shape IR version;
 - MUST produce the specified observable behavior for every valid finite input;
   and
 - MUST report specified execution errors rather than silently produce a
@@ -78,7 +76,7 @@ A conforming executor:
 ### 4.3 End-to-end conformance
 
 A conforming end-to-end implementation MUST satisfy both front-end and
-execution conformance for the same language and IR versions.
+Shape IR evaluation conformance for the same language and Shape IR versions.
 
 Extensions MUST NOT change the meaning of valid ShapeSQL programs. An
 implementation that accepts extensions MUST provide a mode in which programs
@@ -93,7 +91,8 @@ The following notation is used where prose would be ambiguous:
 - `|R|` denotes the number of rows in bag `R`, including duplicates.
 - `R ⊎ T` denotes bag union: multiplicities are added.
 - `TRUE`, `FALSE`, and `UNKNOWN` denote logical truth values.
-- `NULL` denotes the absence of a scalar value. `NULL` is not the same object as the logical value `UNKNOWN`.
+- `NULL` denotes the absence of a scalar value. It is not the same object as
+  the logical value `UNKNOWN`.
 
 ## 6. Errors
 
@@ -109,9 +108,9 @@ detail is permitted.
 
 ## 7. Versioning
 
-Language and IR versions are independent. Supporting ShapeSQL 0.1 does not
-imply support for every future Shape IR or Execution IR version.
+Language and Shape IR versions are independent. Supporting ShapeSQL 0.1 does
+not imply support for every future Shape IR version.
 
 Before ShapeSQL 0.1 is declared stable, this draft may introduce incompatible
 changes. After stabilization, an implementation MUST identify the language and
-IR versions to which it claims conformance.
+Shape IR versions to which it claims conformance.
