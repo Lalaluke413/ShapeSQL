@@ -27,6 +27,8 @@ non-normative provides context only.
    whitespace, comments, identifiers, literals, and tokenization.
 6. [Diagnostics](05-diagnostics.md) defines rejection and error phases and
    their use by the conformance corpus.
+7. [Grammar](06-grammar.md) defines complete programs, query forms, expression
+   precedence, reserved keywords, and syntactic error boundaries.
 
 The initial [conformance corpus](../../tests/corpus/README.md) contains
 machine-readable front-end cases. It will grow alongside the normative
@@ -36,7 +38,6 @@ documents.
 
 The following documents should be added as the language becomes concrete:
 
-- **Grammar** — a machine-readable grammar for complete ShapeSQL programs.
 - **Type system and expressions** — type checking, coercion, scalar operators,
   and error behavior.
 - **Shape IR** — typed relational nodes and semantics-preserving rewrites.

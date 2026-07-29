@@ -28,5 +28,9 @@ front-end case may assert only that source is accepted and valid Shape IR is
 produced. Evaluation cases will additionally describe the expected schema,
 bag, and ordering once the corpus format for typed values is defined.
 
-The initial cases establish that uncorrelated relational predicates are
-accepted while correlated `EXISTS` and `IN` subqueries are binding errors.
+The initial cases establish that:
+
+- uncorrelated relational predicates are accepted;
+- correlated `EXISTS` and `IN` subqueries are binding errors; and
+- representative program, query, expression, and window forms have the
+  syntactic outcomes required by the grammar.

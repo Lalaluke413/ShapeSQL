@@ -42,6 +42,20 @@
       }
     },
     {
+      "id": "grammar-core",
+      "source": "accepted/grammar-core.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "set-precedence",
+      "source": "accepted/set-precedence.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
       "id": "correlated-exists",
       "source": "rejected/correlated-exists.sql",
       "expect": {
@@ -55,6 +69,54 @@
       "expect": {
         "outcome": "error",
         "phase": "binding"
+      }
+    },
+    {
+      "id": "derived-source-without-alias",
+      "source": "rejected/derived-source-without-alias.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "syntactic"
+      }
+    },
+    {
+      "id": "empty-in-list",
+      "source": "rejected/empty-in-list.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "syntactic"
+      }
+    },
+    {
+      "id": "limit-without-order",
+      "source": "rejected/limit-without-order.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "syntactic"
+      }
+    },
+    {
+      "id": "multiple-programs",
+      "source": "rejected/multiple-programs.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "syntactic"
+      }
+    },
+    {
+      "id": "select-without-from",
+      "source": "rejected/select-without-from.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "syntactic"
+      }
+    },
+    {
+      "id": "window-aggregate-order",
+      "source": "rejected/window-aggregate-order.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "syntactic"
       }
     }
   ]

@@ -3,7 +3,8 @@
 ## 1. Overview
 
 This document defines the relational meaning of the principal ShapeSQL 0.1
-query constructs. Surface grammar and exact type-checking rules will be defined
+query constructs. Surface syntax is defined by
+[Grammar](06-grammar.md). Exact type-checking rules will be defined
 separately.
 
 ## 2. Logical processing
@@ -264,8 +265,8 @@ whether `NULL` sorts before or after non-`NULL` values.
 
 When both are present, `OFFSET` applies before `LIMIT`.
 
-Using `LIMIT` or `OFFSET` without an outermost `ORDER BY` is a static error
-because a bag has no first row.
+`LIMIT` and `OFFSET` are syntactically permitted only after an outermost
+`ORDER BY` because a bag has no first row.
 
 ## 16. Worked semantic example
 
