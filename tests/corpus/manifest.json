@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "catalog": {
+    "outer_rows": [
+      {
+        "name": "id",
+        "type": "INT64",
+        "nullable": false
+      },
+      {
+        "name": "group_id",
+        "type": "INT64",
+        "nullable": false
+      }
+    ],
+    "inner_rows": [
+      {
+        "name": "id",
+        "type": "INT64",
+        "nullable": false
+      },
+      {
+        "name": "group_id",
+        "type": "INT64",
+        "nullable": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "uncorrelated-exists",
+      "source": "accepted/uncorrelated-exists.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "uncorrelated-in",
+      "source": "accepted/uncorrelated-in.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "correlated-exists",
+      "source": "rejected/correlated-exists.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "correlated-in",
+      "source": "rejected/correlated-in.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    }
+  ]
+}

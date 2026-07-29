@@ -36,7 +36,8 @@ ShapeSQL separates a query's source spelling from its relational meaning:
 1. **ShapeSQL source** expresses a query over flat relations.
 2. **Shape IR** represents its typed relational meaning.
 3. Implementations may apply semantics-preserving rewrites while remaining in
-   Shape IR.
+   Shape IR. Such rewrites must preserve specified errors as well as successful
+   results.
 
 Relational operators such as joins and grouping belong to Shape IR.
 Parsing algorithms, optimization strategy, and evaluation mechanisms are
@@ -69,7 +70,8 @@ docs/
   specification/       Normative ShapeSQL source and Shape IR contracts
   design/              Non-normative proposals and design rationale
 src/                    Future reference implementation
-tests/                  Future executable conformance examples
+tests/
+  corpus/               Portable conformance cases and expected outcomes
 ```
 
 Only `docs/specification` defines conformance. Design notes and implementation

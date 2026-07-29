@@ -20,7 +20,7 @@ typed IR. This permits a planner to distinguish same-named fields introduced
 by a join.
 
 SQL source resolves fields by name according to binding rules. An unqualified
-reference that matches more than one visible field is a static error. A result
+reference that matches more than one visible field is a binding error. A result
 schema MAY contain duplicate display names.
 
 The order of fields in a schema is observable and MUST be preserved unless a
@@ -146,16 +146,24 @@ Unless an operator is explicitly defined otherwise:
 
 - a strict scalar operator returns `NULL` when any operand is `NULL`;
 - a non-null result has the statically inferred result type; and
-- evaluation failure produces an execution error for the query.
+- evaluation failure produces an evaluation error for the query.
 
 Boolean connectives, `CASE`, `IS NULL`, `IS NOT NULL`, and aggregate functions
 have explicit non-strict behavior and are not governed solely by the strict
 operator rule.
 
-ShapeSQL does not specify short-circuit evaluation for ordinary scalar
-operators. A program MUST NOT depend on an operand being skipped to suppress an
-execution error unless the operator's contract explicitly defines conditional
-evaluation. `CASE` has such a contract in
+Except where an operator's contract explicitly defines conditional
+evaluation, evaluating an expression requires evaluating every operand
+expression. An implementation MAY choose the physical operand evaluation
+order, but MUST NOT skip an operand when doing so would suppress a required
+evaluation error.
+
+In particular, `AND` and `OR` are not conditional-evaluation operators. Both
+operands are required even when one operand determines the truth-table result.
+The strict-operator null rule likewise does not permit an implementation to
+skip another operand that would produce an evaluation error.
+
+`CASE` has an explicit conditional-evaluation contract in
 [Core query semantics](03-query-semantics.md#7-conditional-expressions).
 
 ## 10. Finite execution
@@ -163,6 +171,6 @@ evaluation. `CASE` has such a contract in
 Every input relation MUST be finite. Every successful relational operation
 defined by ShapeSQL over finite inputs produces a finite result.
 
-An implementation MAY reject a query before or during execution when a
-documented resource limit is exceeded. Resource exhaustion is an execution
+An implementation MAY reject a query before or during evaluation when a
+documented resource limit is exceeded. Resource exhaustion is an evaluation
 failure, not a successful partial result.

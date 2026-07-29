@@ -1,0 +1,32 @@
+# ShapeSQL Conformance Corpus
+
+This directory contains machine-readable cases for the portable ShapeSQL and
+Shape IR contracts.
+
+The corpus instantiates requirements from `docs/specification`; it does not
+create new language requirements. If a case conflicts with the normative
+documents, the normative documents govern.
+
+`manifest.json` lists each case. A case has:
+
+- a stable `id`;
+- a source file or, for direct Shape IR tests, an IR fixture;
+- any catalog schemas and finite input relations required by the case; and
+- an expected outcome.
+
+An erroneous case records one of these phases:
+
+- `lexical`;
+- `syntactic`;
+- `binding`;
+- `typing`;
+- `shape-ir-validation`; or
+- `evaluation`.
+
+Error codes and diagnostic text are intentionally absent. An accepted
+front-end case may assert only that source is accepted and valid Shape IR is
+produced. Evaluation cases will additionally describe the expected schema,
+bag, and ordering once the corpus format for typed values is defined.
+
+The initial cases establish that uncorrelated relational predicates are
+accepted while correlated `EXISTS` and `IN` subqueries are binding errors.

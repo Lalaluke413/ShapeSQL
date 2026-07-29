@@ -22,8 +22,9 @@ For semantic description, a query block is evaluated in this order:
 10. row removal and bounding by `OFFSET` and `LIMIT`.
 
 An implementation need not execute these steps in this physical order. Any
-plan is conforming when it preserves the specified observable behavior and
-errors.
+plan is conforming only when it preserves both successful results and required
+evaluation errors as defined in
+[Conventions and conformance](00-conventions.md#7-semantics-preserving-rewrites).
 
 ## 3. Relation sources
 
@@ -141,7 +142,7 @@ An aggregate consumes the bag of values contributed by one group.
 value is present. `COUNT` returns `0` for an empty input.
 
 `COUNT` returns `INT64`. A count greater than the maximum `INT64` value is an
-execution error. `SUM` over `INT64` is an execution error when its exact result
+evaluation error. `SUM` over `INT64` is an evaluation error when its exact result
 is outside the `INT64` range.
 
 ## 10. Duplicate elimination
@@ -171,10 +172,19 @@ determined during static typing.
 
 ## 12. Relational predicates
 
+Every query used within a relational predicate MUST be uncorrelated. If a
+reference within that query binds to a field from an enclosing query block,
+the program has a binding error.
+
 ### 12.1 `EXISTS`
 
-`EXISTS (Q)` is `TRUE` when `Q` produces at least one row and `FALSE` when it
-produces no rows. It never produces `UNKNOWN`.
+After successful evaluation of `Q`, `EXISTS (Q)` is `TRUE` when `Q` produces
+at least one row and `FALSE` when it produces no rows. It never produces
+`UNKNOWN`.
+
+An evaluation error required while evaluating `Q` is an evaluation error for
+the predicate. An implementation MUST NOT use the presence of one result row
+to suppress such an error.
 
 `NOT EXISTS (Q)` is the boolean negation of `EXISTS (Q)`.
 
@@ -191,6 +201,10 @@ For an empty candidate bag, `IN` is `FALSE`, including when `x` is `NULL`.
 `x NOT IN C` is `NOT (x IN C)` under three-valued logic.
 
 A query used as the right operand of `IN` MUST have exactly one result field.
+
+Evaluating `IN` requires evaluating `x` and every expression or query that
+contributes to `C`. An implementation MUST NOT stop at the first matching
+candidate when doing so would suppress a required evaluation error.
 
 ## 13. Partitioned aggregates
 

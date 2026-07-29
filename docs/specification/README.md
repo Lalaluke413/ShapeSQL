@@ -25,6 +25,12 @@ non-normative provides context only.
    query constructs transform relations.
 5. [Lexical structure](04-lexical-structure.md) defines source encoding,
    whitespace, comments, identifiers, literals, and tokenization.
+6. [Diagnostics](05-diagnostics.md) defines rejection and error phases and
+   their use by the conformance corpus.
+
+The initial [conformance corpus](../../tests/corpus/README.md) contains
+machine-readable front-end cases. It will grow alongside the normative
+documents.
 
 ## Planned documents
 
@@ -36,9 +42,6 @@ The following documents should be added as the language becomes concrete:
 - **Shape IR** — typed relational nodes and semantics-preserving rewrites.
 - **Source-to-IR lowering** — translation from every accepted syntax form to
   Shape IR.
-- **Diagnostics** — parse, bind, type, planning, and execution errors.
-- **Conformance examples** — executable input relations, queries, results, and
-  expected errors.
 
 ## Specification boundary
 

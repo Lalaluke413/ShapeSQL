@@ -73,7 +73,11 @@ that output schemas do not depend on implicit name matching or column merging.
 - `IN` and `NOT IN` with a finite literal list; and
 - `IN` and `NOT IN` with a single-column query.
 
-Subqueries in these predicates MAY refer to fields from an enclosing query.
+Subqueries in these predicates MUST NOT refer to fields from an enclosing
+query block. Such a reference is a binding error. Authors must express an
+equivalent uncorrelated query, when one exists, using joins, grouping, or
+another included construct.
+
 Scalar-valued and row-valued subquery expressions are excluded.
 
 ### 3.5 Grouping
@@ -81,6 +85,9 @@ Scalar-valued and row-valued subquery expressions are excluded.
 - `GROUP BY` over scalar expressions;
 - `HAVING`; and
 - `COUNT`, `SUM`, `MIN`, and `MAX`.
+
+This is the complete aggregate set for ShapeSQL 0.1. `AVG`, `BOOL_AND`, and
+`BOOL_OR` are excluded.
 
 `GROUPING SETS`, `ROLLUP`, `CUBE`, ordered-set aggregates, hypothetical-set
 aggregates, and user-defined aggregates are excluded.
@@ -133,6 +140,7 @@ value-selection functions, and explicit window frames are excluded.
 
 ShapeSQL 0.1 does not include:
 
+- table value constructors, including `VALUES`;
 - recursive common table expressions or any other recursion;
 - procedural blocks, variables, loops, branching statements, or exception
   handlers;
@@ -175,7 +183,7 @@ The host environment, not ShapeSQL, is responsible for:
 - supplying input schemas and data;
 - transaction isolation and concurrency;
 - persistence and recovery; and
-- delivering the completed result or execution error.
+- delivering the completed result or evaluation error.
 
 ShapeSQL evaluation MUST behave as if every input relation were immutable for
 the duration of one query. The means used to provide that view are outside this
@@ -197,7 +205,7 @@ ShapeSQL 0.1 includes:
 - text concatenation with `||`.
 
 No implicit conversion is permitted unless the type-system document explicitly
-defines it. Division by zero and integer overflow are execution errors.
+defines it. Division by zero and integer overflow are evaluation errors.
 
 Functions not explicitly listed by this specification are excluded from the
 portable language.

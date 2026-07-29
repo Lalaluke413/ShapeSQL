@@ -9,7 +9,7 @@ and grammatical rules.
 
 ## 2. Source encoding
 
-ShapeSQL source MUST be valid UTF-8. An invalid UTF-8 byte sequence is a static
+ShapeSQL source MUST be valid UTF-8. An invalid UTF-8 byte sequence is a lexical
 error.
 
 The Unicode byte-order mark U+FEFF MAY appear once at the beginning of a source
@@ -38,7 +38,7 @@ Comments have the same separating effect as whitespace:
 - A block comment begins with `/*` and extends through the next `*/`. Block
   comments do not nest.
 
-An unterminated block comment is a static error.
+An unterminated block comment is a lexical error.
 
 At least one separator is REQUIRED between adjacent tokens when their
 characters would otherwise form one longer token. For example, `SELECTa` is
@@ -59,7 +59,7 @@ When more than one token could begin at the same position, the lexer MUST
 consume the longest valid token. Keyword recognition is applied to a complete
 regular identifier token, not to a prefix of one.
 
-An unrecognized source character is a static error.
+An unrecognized source character is a lexical error.
 
 ## 5. Keywords
 
@@ -95,7 +95,7 @@ Delimited identifiers are case-sensitive and are not case-folded. A delimited
 identifier MUST contain at least one Unicode scalar value after doubled quotes
 are decoded.
 
-An unterminated delimited identifier is a static error.
+An unterminated delimited identifier is a lexical error.
 
 ## 7. Literals
 
@@ -117,7 +117,7 @@ single quote in its value.
 Backslash has no special meaning. Adjacent text literals are separate tokens
 and are not implicitly concatenated.
 
-An unterminated text literal is a static error.
+An unterminated text literal is a lexical error.
 
 ### 7.3 Boolean and null literals
 
@@ -144,7 +144,7 @@ token.
 
 ## 9. Lexical errors
 
-The following are static errors detected no later than lexical analysis:
+The following are lexical errors:
 
 - invalid UTF-8;
 - U+0000 in source text;
@@ -153,6 +153,6 @@ The following are static errors detected no later than lexical analysis:
 - an unterminated delimited identifier; or
 - an unterminated text literal.
 
-An implementation MAY report a lexical error during a combined lexical and
-syntactic analysis phase, provided it rejects the program before binding or
-type checking.
+An implementation MAY implement lexical and syntactic analysis as one
+operation. It MUST nevertheless classify an error in this list as lexical
+rather than syntactic.

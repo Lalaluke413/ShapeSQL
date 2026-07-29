@@ -42,7 +42,7 @@ This specification uses the following terms:
 - **Shape IR**: the planned, statically typed relational representation of a
   ShapeSQL query.
 - **observable behavior**: a result schema, result bag, required result order,
-  or specified error visible outside the implementation.
+  or specified error outcome visible outside the implementation.
 
 “Query” refers to the ShapeSQL program or its relational meaning as determined
 by context. “Column” is used for SQL-facing names; “field” is used for typed
@@ -70,7 +70,7 @@ A conforming Shape IR evaluator:
 - MUST accept every valid graph in the claimed Shape IR version;
 - MUST produce the specified observable behavior for every valid finite input;
   and
-- MUST report specified execution errors rather than silently produce a
+- MUST report specified evaluation errors rather than silently produce a
   different result.
 
 ### 4.3 End-to-end conformance
@@ -96,17 +96,45 @@ The following notation is used where prose would be ambiguous:
 
 ## 6. Errors
 
-A **static error** occurs while parsing, binding, typing, or planning a program
-and prevents execution.
+A **static error** occurs during lexical, syntactic, binding, or typing
+analysis of ShapeSQL source and prevents Shape IR evaluation.
 
-An **execution error** occurs while evaluating an otherwise valid plan.
+A **Shape IR validation error** occurs when a Shape IR graph violates the
+structural, binding, or typing invariants of its claimed Shape IR version.
+
+An **evaluation error** occurs while evaluating valid Shape IR over otherwise
+valid inputs.
 
 An implementation MUST NOT replace a required error with an ordinary scalar
-value, an empty relation, or partial success. A future diagnostics document
-will assign stable error categories and define when implementation-specific
-detail is permitted.
+value, an empty relation, or partial success. It also MUST NOT replace a
+successful result with an error.
 
-## 7. Versioning
+The error phase is normative when the specification or conformance corpus
+defines it. Error text is not normative. Implementations MAY detect an error
+earlier than a literal phase-by-phase implementation would, but MUST classify
+it according to the phase whose rule was violated.
+
+The phases and their boundaries are defined in
+[Diagnostics](05-diagnostics.md).
+
+## 7. Semantics-preserving rewrites
+
+A rewrite is semantics-preserving only when, for every valid input:
+
+- evaluation succeeds before the rewrite if and only if it succeeds after the
+  rewrite; and
+- when evaluation succeeds, the result schema, result bag, and any required
+  result order are unchanged.
+
+Therefore, equivalence over successful scalar values or result bags alone is
+insufficient. A rewrite MUST NOT suppress an evaluation error that the
+unrewritten Shape IR would require, and MUST NOT introduce an evaluation error
+for an input on which the unrewritten Shape IR would succeed.
+
+Static errors are determined before valid Shape IR exists. Rewriting or
+constant folding MUST NOT make otherwise invalid ShapeSQL source acceptable.
+
+## 8. Versioning
 
 Language and Shape IR versions are independent. Supporting ShapeSQL 0.1 does
 not imply support for every future Shape IR version.
