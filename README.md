@@ -5,8 +5,8 @@ reshaping. It is intended to be relationally complete while remaining
 intentionally computationally incomplete.
 
 > [!IMPORTANT]
-> ShapeSQL is an early design project. The specification is a draft and no
-> conforming implementation exists yet.
+> ShapeSQL is an early design project. The specification is a draft, and the
+> reference implementation is in initial development and is not yet conforming.
 
 ## Motivation
 
@@ -69,7 +69,7 @@ feature boundary.
 docs/
   specification/       Normative ShapeSQL source and Shape IR contracts
   design/              Non-normative proposals and design rationale
-src/                    Future reference implementation
+src/                    Rust reference implementation
 tests/
   corpus/               Portable conformance cases and expected outcomes
 ```
@@ -96,6 +96,9 @@ The current work is to establish:
 3. its type rules, null semantics, and multiplicity semantics;
 4. the typed relational Shape IR; and
 5. a corpus of accepted and rejected queries with expected results or errors.
+
+The reference implementation currently includes a handwritten lexer for the
+complete ShapeSQL 0.1 lexical structure.
 
 ## License
 
