@@ -32,7 +32,7 @@ every relational input to an operation are required. An implementation MUST
 NOT skip one input merely because another input is empty or otherwise
 determines the result bag when doing so would suppress an evaluation error.
 Demand-evaluated relational predicates and conditional scalar expressions
-retain their explicit rules below.
+retain their explicit rules in the data model and below.
 
 ## 3. Relation sources
 
@@ -66,9 +66,23 @@ The multiplicity of `(l, r)` is the product of the input multiplicities.
 
 ### 4.2 Inner join
 
-An inner join evaluates its `ON` condition for every candidate pair from the
-cross join. It emits the concatenated row exactly when the condition is
-`TRUE`. It emits no row when the condition is `FALSE` or `UNKNOWN`.
+The candidate pairs of an inner join are the mathematical cross product of
+the left and right input occurrences. A candidate pair is a matching pair when
+the `ON` condition applied to that pair evaluates to `TRUE`. It is not a
+matching pair when the condition evaluates to `FALSE` or `UNKNOWN`.
+
+A successful inner join result contains the concatenated row for every
+matching candidate pair, with the multiplicity implied by the input
+occurrences. Finding one matching pair does not permit an implementation to
+discard another candidate pair or matching occurrence.
+
+This definition does not require an implementation to materialize the cross
+product or invoke the condition separately for every pair. An implementation
+MAY establish matching and non-matching pairs by any method that preserves the
+successful result and required evaluation errors. For purposes of those
+errors, the condition is semantically applied to every mathematical candidate
+pair; its own conditional-evaluation rules determine which subexpressions are
+required for that pair.
 
 ### 4.3 Left outer join
 

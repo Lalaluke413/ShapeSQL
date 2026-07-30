@@ -177,7 +177,7 @@ Shape IR 0.1 contains the following scalar expression forms:
 | `literal` | A non-null scalar value, or a typed `NULL`. |
 | `field` | One field identity from the expression's environment. |
 | `unary` | Unary `+`, unary `-`, or `not`. |
-| `binary` | Arithmetic, concatenation, comparison, `and`, or `or`. |
+| `binary` | Distinct left and right operands and one binary operation. |
 | `is_null` | An operand and a Boolean `negated` property. |
 | `case` | Ordered predicate-result arms and an explicit fallback. |
 | `cast` | An operand and target scalar type. |
@@ -232,7 +232,8 @@ semantics in the data model and core query semantics.
 
 In particular:
 
-- `and` and `or` require both operands;
+- `and` and `or` require their left operand first and require their right
+  operand only under the ordered conditional-evaluation rules;
 - a strict operator still requires all operands when one operand is `NULL`;
 - every `in_list` candidate is required;
 - a demanded `exists` or `in_query` relation is evaluated completely; and
@@ -240,8 +241,8 @@ In particular:
   fallback is evaluated.
 
 An implementation MAY share a scalar expression representation. Sharing MUST
-NOT cause an expression in an unselected `case` result to be evaluated
-unconditionally.
+NOT cause an expression in an unselected `case` result or an unrequired `and`
+or `or` right operand to be evaluated unconditionally.
 
 ## 5. Common node rules
 
@@ -360,9 +361,14 @@ schema followed by the right schema, with these nullability changes:
 
 The join emits rows and multiplicities according to
 [Core query semantics](03-query-semantics.md#4-joins). Both ordinary inputs
-are strict. For a qualified join, the condition is required for every
-candidate pair. An implementation MUST NOT stop testing pairs after finding
-one match.
+are strict. The candidate-pair definition is mathematical and does not require
+materializing a cross product or physically testing the condition once per
+pair. An implementation MAY use any join method that preserves all matching
+occurrences and required evaluation errors. For a qualified join, the
+condition is semantically applied to every mathematical candidate pair, with
+conditional demand within that condition determined by the scalar expression
+rules. Finding one match does not permit remaining candidate pairs to be
+discarded.
 
 A `join` produces a bag and discards input ordering.
 
@@ -597,7 +603,12 @@ Consequently, an optimizer MUST NOT, without a sufficient proof:
 
 - replace an error-capable expression with an unused value;
 - remove an ordered nested query whose ordering expressions may fail;
-- stop an aggregate, join, membership test, or relational predicate early;
+- stop an aggregate, membership test, or relational predicate early;
+- discard join candidate pairs or matching occurrences merely because another
+  match was found, or bypass a join condition in a way that suppresses a
+  required evaluation error;
+- reorder, reassociate, or unconditionally evaluate `and` or `or` operands
+  when doing so changes which error-capable operands are required;
 - evaluate an unselected `case` result;
 - evaluate a demand-evaluated subquery when its containing expression is not
   required; or
@@ -605,8 +616,9 @@ Consequently, an optimizer MUST NOT, without a sufficient proof:
 
 Shape IR does not require a physical evaluation order when several required
 operations fail. Diagnostic text and the choice among multiple simultaneously
-applicable evaluation errors are not portable. Returning success when any
-required operation fails is never permitted.
+applicable evaluation errors are not portable. This freedom does not override
+the conditional-demand rules for `case`, `and`, or `or`. Returning success
+when any required operation fails is never permitted.
 
 ## 10. Validation
 

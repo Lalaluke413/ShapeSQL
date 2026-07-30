@@ -261,6 +261,12 @@ unary_expression =
 and remainder associate from left to right. Unary operators and `NOT`
 associate from right to left.
 
+Because `AND` and `OR` are ordered conditional-evaluation operators, a front
+end MUST preserve their resulting left and right operands and operand order
+when lowering source to Shape IR. This requirement does not prohibit a
+semantics-preserving rewrite under
+[Conventions and conformance](00-conventions.md#7-semantics-preserving-rewrites).
+
 A comparison, null test, or membership test may occur at most once without
 parenthesized subexpressions. For example, `a < b < c` is a syntactic error,
 while `(a < b) = (b < c)` is syntactically valid and is checked by the type

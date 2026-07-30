@@ -159,10 +159,28 @@ expression. An implementation MAY choose the physical operand evaluation
 order, but MUST NOT skip an operand when doing so would suppress a required
 evaluation error.
 
-In particular, `AND` and `OR` are not conditional-evaluation operators. Both
-operands are required even when one operand determines the truth-table result.
-The strict-operator null rule likewise does not permit an implementation to
-skip another operand that would produce an evaluation error.
+`AND` and `OR` are ordered conditional-evaluation operators. Their left
+operand is required first:
+
+- for `p AND q`, `q` is not required when `p` is `FALSE`; when `p` is `TRUE`
+  or `UNKNOWN`, `q` is required;
+- for `p OR q`, `q` is not required when `p` is `TRUE`; when `p` is `FALSE`
+  or `UNKNOWN`, `q` is required; and
+- if evaluating `p` raises an evaluation error, the expression raises that
+  error and `q` is not required.
+
+When `q` is required, the result is determined by the three-valued truth
+tables in Section 7. An `UNKNOWN` left operand therefore does not determine
+either result and cannot skip the right operand.
+
+These rules define semantic demand and operand order, not a required physical
+evaluation schedule. An implementation MAY evaluate or precompute a right
+operand early only when doing so cannot make an otherwise unobservable
+evaluation error observable. Parentheses and left associativity are
+semantically significant because they determine this conditional demand.
+
+The strict-operator null rule does not permit an implementation to skip
+another operand that would produce an evaluation error.
 
 `CASE` has an explicit conditional-evaluation contract in
 [Core query semantics](03-query-semantics.md#7-conditional-expressions).

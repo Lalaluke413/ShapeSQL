@@ -195,8 +195,9 @@ and the applicable total order.
 `NOT p` is nullable exactly when `p` is nullable. `p AND q` and `p OR q` are
 nullable when either operand is nullable.
 
-Their values follow the three-valued truth tables in the data model. Their
-typing and nullability do not imply conditional evaluation.
+Their values and ordered conditional-evaluation behavior follow
+[Data model](02-data-model.md#9-expression-evaluation). Conditional evaluation
+does not change their result type or nullability.
 
 ### 6.5 Null tests
 
