@@ -97,8 +97,8 @@ The current work is to establish:
 4. the typed relational Shape IR; and
 5. a corpus of accepted and rejected queries with expected results or errors.
 
-The reference implementation currently includes a handwritten lexer for the
-complete ShapeSQL 0.1 lexical structure.
+The reference implementation currently includes a handwritten lexer and
+recursive-descent parser for the complete ShapeSQL 0.1 grammar.
 
 ## License
 
