@@ -104,8 +104,8 @@ An unterminated delimited identifier is a lexical error.
 An integer literal is one or more ASCII decimal digits. A leading `+` or `-`
 is a separate unary operator, not part of the literal token.
 
-The type-system document defines range checking, including the treatment of
-the minimum `INT64` value.
+[Types and type checking](08-types-and-type-checking.md#42-integer-literals)
+defines range checking, including the treatment of the minimum `INT64` value.
 
 ### 7.2 Text literals
 

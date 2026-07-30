@@ -31,6 +31,9 @@ non-normative provides context only.
    precedence, reserved keywords, and syntactic error boundaries.
 8. [Binding](07-binding.md) defines relation and field name resolution,
    visibility, aliases, wildcard expansion, result names, and field identity.
+9. [Types and type checking](08-types-and-type-checking.md) defines expression
+   types, nullability, operator and aggregate signatures, casts, placement
+   restrictions, and typed query schemas.
 
 The initial [conformance corpus](../../tests/corpus/README.md) contains
 machine-readable front-end cases. It will grow alongside the normative
@@ -40,8 +43,6 @@ documents.
 
 The following documents should be added as the language becomes concrete:
 
-- **Type system and expressions** — type checking, coercion, scalar operators,
-  and error behavior.
 - **Shape IR** — typed relational nodes and semantics-preserving rewrites.
 - **Source-to-IR lowering** — translation from every accepted syntax form to
   Shape IR.

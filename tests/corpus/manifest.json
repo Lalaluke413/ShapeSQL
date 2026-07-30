@@ -96,6 +96,13 @@
       }
     },
     {
+      "id": "typed-expressions",
+      "source": "accepted/typed-expressions.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
       "id": "correlated-exists",
       "source": "rejected/correlated-exists.sql",
       "expect": {
@@ -229,6 +236,118 @@
       "expect": {
         "outcome": "error",
         "phase": "binding"
+      }
+    },
+    {
+      "id": "type-arithmetic-text",
+      "source": "rejected/type-arithmetic-text.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-unconstrained-null",
+      "source": "rejected/type-unconstrained-null.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-non-boolean-predicate",
+      "source": "rejected/type-non-boolean-predicate.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-incompatible-case",
+      "source": "rejected/type-incompatible-case.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-incompatible-set-fields",
+      "source": "rejected/type-incompatible-set-fields.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-in-query-arity",
+      "source": "rejected/type-in-query-arity.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-boolean-sum",
+      "source": "rejected/type-boolean-sum.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-nullable-order-without-placement",
+      "source": "rejected/type-nullable-order-without-placement.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-incomplete-row-number-order",
+      "source": "rejected/type-incomplete-row-number-order.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-aggregate-in-where",
+      "source": "rejected/type-aggregate-in-where.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-out-of-range-integer",
+      "source": "rejected/type-out-of-range-integer.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-unsupported-cast",
+      "source": "rejected/type-unsupported-cast.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-nonaggregate-having",
+      "source": "rejected/type-nonaggregate-having.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-ungrouped-column",
+      "source": "rejected/type-ungrouped-column.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
       }
     }
   ]

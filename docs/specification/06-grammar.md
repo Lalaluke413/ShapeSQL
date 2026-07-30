@@ -203,8 +203,10 @@ a separate token, these productions accept only unsigned integer literals.
 Range checking occurs during typing.
 
 Whether an ordering expression is nullable and whether it therefore requires
-an explicit null placement are typing rules. The interpretation and resolution
-of an ordering ordinal is a [binding rule](07-binding.md#10-order-by-binding).
+an explicit null placement are
+[typing rules](08-types-and-type-checking.md#15-ordering-and-row-bounds). The
+interpretation and resolution of an ordering ordinal is a
+[binding rule](07-binding.md#10-order-by-binding).
 
 ## 8. Scalar expressions
 
@@ -367,7 +369,7 @@ aggregate do not match the grammar.
 
 The placement and nesting of aggregate and partitioned expressions, the
 required completeness of `ROW_NUMBER` ordering, and their operand types are
-static semantic rules.
+[typing rules](08-types-and-type-checking.md#11-grouping-and-aggregate-expressions).
 
 ## 11. Reserved keywords
 
@@ -420,4 +422,5 @@ particular, it does not determine:
 - whether ordering and bounds satisfy their static semantic requirements.
 
 Violations of those rules are binding or typing errors as assigned by
-[Binding](07-binding.md) and the type-system document, not syntactic errors.
+[Binding](07-binding.md) and
+[Types and type checking](08-types-and-type-checking.md), not syntactic errors.

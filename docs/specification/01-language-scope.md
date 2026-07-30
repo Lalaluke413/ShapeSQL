@@ -98,8 +98,8 @@ aggregates, and user-defined aggregates are excluded.
 - `EXCEPT` and `EXCEPT ALL`.
 
 Inputs to a set operation MUST have the same number of fields and compatible
-field types. Exact compatibility and coercion rules will be defined by the
-type-system document.
+field types. Exact compatibility rules are defined by
+[Types and type checking](08-types-and-type-checking.md#14-set-operations).
 
 ### 3.7 Ordering and bounds
 
@@ -205,8 +205,9 @@ ShapeSQL 0.1 includes:
 - `CAST` among conversions explicitly permitted by the type system; and
 - text concatenation with `||`.
 
-No implicit conversion is permitted unless the type-system document explicitly
-defines it. Division by zero and integer overflow are evaluation errors.
+No implicit conversion is permitted. Explicit conversions are defined by
+[Types and type checking](08-types-and-type-checking.md#8-casts). Division by
+zero and integer overflow are evaluation errors.
 
 Functions not explicitly listed by this specification are excluded from the
 portable language.

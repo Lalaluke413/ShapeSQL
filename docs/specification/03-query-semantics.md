@@ -3,9 +3,9 @@
 ## 1. Overview
 
 This document defines the relational meaning of the principal ShapeSQL 0.1
-query constructs. Surface syntax is defined by
-[Grammar](06-grammar.md). Exact type-checking rules will be defined
-separately.
+query constructs. Surface syntax is defined by [Grammar](06-grammar.md).
+Exact type-checking rules are defined by
+[Types and type checking](08-types-and-type-checking.md).
 
 ## 2. Logical processing
 

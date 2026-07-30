@@ -25,7 +25,8 @@ Successful binding produces a bound program in which:
 
 A violation of a rule in this document is a `binding` error. Binding does not
 determine operator types, expression result types, nullability, or
-set-operation type compatibility; those are typing concerns.
+set-operation type compatibility; those are defined by
+[Types and type checking](08-types-and-type-checking.md).
 
 ## 2. Identifier comparison
 
