@@ -27,6 +27,13 @@ plan is conforming only when it preserves both successful results and required
 evaluation errors as defined in
 [Conventions and conformance](00-conventions.md#7-semantics-preserving-rewrites).
 
+Once a query or query block is required, every one of its relation sources and
+every relational input to an operation are required. An implementation MUST
+NOT skip one input merely because another input is empty or otherwise
+determines the result bag when doing so would suppress an evaluation error.
+Demand-evaluated relational predicates and conditional scalar expressions
+retain their explicit rules below.
+
 ## 3. Relation sources
 
 A named relation source contributes every row occurrence from the input
@@ -36,6 +43,16 @@ relation and makes its fields visible according to
 A derived table or common table expression is evaluated according to its query
 and contributes the resulting relation. Its internal ordering is discarded
 unless a surrounding language rule explicitly consumes an ordered result.
+
+Every common table expression is subject to static analysis even when it is
+not referenced. At evaluation time, its query is required only through a
+relation-source occurrence that uses it. An unreferenced common table
+expression is not evaluated, so an evaluation error that could arise only
+from its query is not observable.
+
+Whether a referenced common table expression is materialized, shared, or
+recomputed is not observable. An implementation may choose among those
+strategies only when it preserves required evaluation errors.
 
 ## 4. Joins
 
@@ -109,6 +126,13 @@ If no predicate matches:
 
 Only the selected result expression is evaluated. Errors in unselected result
 expressions are not observable.
+
+This conditional rule applies to scalar work performed at the `CASE`
+evaluation stage. A grouping aggregate or partitioned operation syntactically
+contained in a `CASE` is evaluated at its earlier logical stage and its result
+is then available as a scalar value to the `CASE`. Placing such an operation in
+an unselected result does not suppress errors required while computing the
+operation.
 
 ## 8. Grouping
 
@@ -258,9 +282,16 @@ their window ordering expressions.
 Rows are peers when all window ordering expressions compare equally according
 to the ordering rules.
 
-For `ROW_NUMBER`, the ordering expressions include every visible input field.
+For `ROW_NUMBER`, the ordering expressions cover a tuple that determines the
+complete row value at this stage:
+
+- in a non-aggregate query, that tuple contains every visible source field;
+- in an aggregate query with `GROUP BY`, it contains every grouping
+  expression; and
+- in a global aggregate, there is at most one row.
+
 Peer occurrences are therefore permitted only when their complete input rows
-are not distinct; assigning consecutive numbers among such indistinguishable
+are not distinct. Assigning consecutive numbers among such indistinguishable
 occurrences does not change the result bag.
 
 `RANK` and `DENSE_RANK` MAY contain peers with otherwise different field
@@ -273,6 +304,22 @@ not depend on their internal sequence.
 specifies ascending or descending direction and, for nullable expressions,
 whether `NULL` sorts before or after non-`NULL` values.
 
+For a direct non-`DISTINCT` `select_query`, an ordering expression may contain
+a reference resolved against the query's source namespace. Each projected row
+occurrence remains associated with the source row or group occurrence that
+produced it, and the source reference reads from that associated occurrence.
+An implementation may represent this association by carrying hidden fields
+through projection. Hidden ordering fields do not change the result schema.
+
+An ordering expression attached to `SELECT DISTINCT` is evaluated only over
+the projected result fields. Binding prohibits a source-field fallback in
+that case because duplicate elimination can combine source occurrences that
+have different source-only ordering values.
+
+Every ordering expression is required for every row occurrence at its
+applicable stage. Comparing an earlier ordering item MUST NOT suppress an
+evaluation error in a later item.
+
 `OFFSET n` removes the first `n` rows from the ordered result. If fewer than
 `n` rows exist, the result is empty.
 
@@ -281,7 +328,10 @@ whether `NULL` sorts before or after non-`NULL` values.
 When both are present, `OFFSET` applies before `LIMIT`.
 
 `LIMIT` and `OFFSET` are syntactically permitted only after an outermost
-`ORDER BY` because a bag has no first row.
+`ORDER BY` because a bag has no first row. Their ordering list directly
+references every result field. Rows that remain peers are therefore not
+distinct across the complete result schema, so cutting a peer group cannot
+change which row values or multiplicities appear in the bounded result.
 
 ## 16. Worked semantic example
 

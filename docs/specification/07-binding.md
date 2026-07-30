@@ -258,20 +258,26 @@ as follows:
 2. if multiple result fields have that display name, the reference is
    ambiguous and binding fails; or
 3. if no result field matches and the ordered query body is one direct,
-   unparenthesized `select_query`, the reference is resolved against that
-   query block's source namespace.
+   unparenthesized, non-`DISTINCT` `select_query`, the reference is resolved
+   against that query block's source namespace.
 
 If no result field matches and no source namespace is available, the reference
 is unresolved.
 
 A qualified reference in an ordering expression is resolved only against the
-source namespace of a direct, unparenthesized `select_query`. Result fields
-have no source qualifiers. An ordered set operation or parenthesized query
-therefore permits only references resolvable through its result namespace.
+source namespace of a direct, unparenthesized, non-`DISTINCT` `select_query`.
+Result fields have no source qualifiers. An ordered set operation,
+parenthesized query, or `SELECT DISTINCT` therefore permits only references
+resolvable through its result namespace.
 
 Result fields take precedence over same-named source fields. This makes a
 select-item alias usable both as a complete order item and within a larger
 ordering expression.
+
+Restricting `SELECT DISTINCT` ordering to its result namespace ensures that
+every ordering value belongs to the row after duplicate elimination. Without
+this rule, multiple source rows could collapse to one result row while
+contributing different source-only ordering values.
 
 ## 11. Field identity
 

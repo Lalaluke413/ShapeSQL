@@ -34,6 +34,9 @@ non-normative provides context only.
 9. [Types and type checking](08-types-and-type-checking.md) defines expression
    types, nullability, operator and aggregate signatures, casts, placement
    restrictions, and typed query schemas.
+10. [Shape IR](09-shape-ir.md) defines the typed relational graph, scalar
+    expression representation, logical node set, validation rules, ordering
+    flow, and physical-lowering boundary.
 
 The initial [conformance corpus](../../tests/corpus/README.md) contains
 machine-readable front-end cases. It will grow alongside the normative
@@ -41,11 +44,13 @@ documents.
 
 ## Planned documents
 
-The following documents should be added as the language becomes concrete:
+The following documents should be added as the implementation becomes
+concrete:
 
-- **Shape IR** — typed relational nodes and semantics-preserving rewrites.
 - **Source-to-IR lowering** — translation from every accepted syntax form to
   Shape IR.
+- **Shape IR interchange** — a stable encoding and direct IR conformance
+  fixtures.
 
 ## Specification boundary
 

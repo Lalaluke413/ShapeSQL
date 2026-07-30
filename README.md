@@ -43,6 +43,9 @@ Relational operators such as joins and grouping belong to Shape IR.
 Parsing algorithms, optimization strategy, and evaluation mechanisms are
 implementation concerns outside the specification.
 
+See [Shape IR](docs/specification/09-shape-ir.md) for the portable logical
+graph and its boundary with a future physical execution representation.
+
 ## Draft v0.1 scope
 
 The first language version is query-only. Its intended features include:
@@ -89,16 +92,17 @@ unbounded computation.
 
 ## Project status
 
-The current work is to establish:
+The project currently defines:
 
 1. the exact ShapeSQL language subset and observable query behavior;
 2. the lexical structure, grammar, and binding rules of ShapeSQL source;
 3. its type rules, null semantics, and multiplicity semantics;
 4. the typed relational Shape IR; and
-5. a corpus of accepted and rejected queries with expected results or errors.
+5. an initial corpus of accepted and rejected front-end cases.
 
 The reference implementation currently includes a handwritten lexer and
-recursive-descent parser for the complete ShapeSQL 0.1 grammar.
+recursive-descent parser for the complete ShapeSQL 0.1 grammar. Source-to-IR
+lowering, direct IR fixtures, and evaluation cases remain to be implemented.
 
 ## License
 

@@ -39,7 +39,7 @@ This specification uses the following terms:
 - **host environment**: the system that supplies input relations and consumes
   results. It may also provide catalog, storage, transaction, and authorization
   services outside ShapeSQL.
-- **Shape IR**: the planned, statically typed relational representation of a
+- **Shape IR**: the portable, statically typed relational representation of a
   ShapeSQL query.
 - **observable behavior**: a result schema, result bag, required result order,
   or specified error outcome visible outside the implementation.

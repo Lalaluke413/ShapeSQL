@@ -241,7 +241,7 @@ Portable ShapeSQL 0.1 permits:
 | `BOOLEAN` | `BOOLEAN` | Identity. |
 | `INT64` | `INT64` | Identity. |
 | `TEXT` | `TEXT` | Identity. |
-| `INT64` | `TEXT` | Base-ten spelling with a leading `-` only for negative values. |
+| `INT64` | `TEXT` | Base-ten spelling; negative values have a leading `-`. |
 | `TEXT` | `INT64` | Parse the complete string using Section 8.1. |
 | `BOOLEAN` | `TEXT` | `TRUE` or `FALSE`. |
 | `TEXT` | `BOOLEAN` | Parse the complete string using Section 8.2. |
@@ -395,14 +395,26 @@ scalar type. All scalar types are permitted. A nullable window ordering
 expression MUST specify `NULLS FIRST` or `NULLS LAST`.
 
 The additional completeness requirement for `ROW_NUMBER` ordering is a typing
-rule. After binding, its window `ORDER BY` list MUST contain a direct column
-reference to every field visible at the window-evaluation stage. Surrounding
-parentheses and ordering direction do not prevent a direct reference from
-satisfying this requirement. A reference inside another scalar expression
-does not satisfy it.
+rule:
 
-Each required field identity must occur at least once. Additional ordering
-expressions are permitted.
+- in a non-aggregate query, its window `ORDER BY` list MUST contain a direct
+  column reference to every field visible from the query's `FROM` clause after
+  outer-join nullability adjustment;
+- in an aggregate query with `GROUP BY`, it MUST contain an ordering expression
+  structurally equal to every grouping expression; and
+- in an aggregate query without `GROUP BY`, there is no additional
+  completeness requirement because the implicit global group produces exactly
+  one row.
+
+Structural equality and redundant parentheses are treated as in Section 11.2.
+Ordering direction and null placement do not affect whether a required
+expression is present. A required field or grouping expression must occur at
+least once. Additional ordering expressions are permitted.
+
+These rules guarantee that rows left as peers are not distinct across the
+complete input row at the window-evaluation stage. Duplicate occurrences of
+one row value may remain peers; assigning their row numbers in either order
+produces the same result bag.
 
 ## 13. Projection and query schemas
 
@@ -445,6 +457,19 @@ the expression produces `NULL`, which a conforming evaluation cannot do.
 A `LIMIT` or `OFFSET` integer literal MUST be no greater than `2^63 - 1`.
 The grammar already excludes a sign. A larger bound is a typing error.
 
+When `LIMIT` or `OFFSET` is present, the bound `ORDER BY` list MUST contain a
+direct reference to every field in the ordered query body's result schema.
+Surrounding parentheses, direction, and null placement do not prevent a direct
+reference from satisfying this rule. A bound ordinal is a direct reference to
+the result field selected by that ordinal. A reference inside another scalar
+expression does not satisfy the rule.
+
+Each result field identity must occur at least once. Additional ordering
+expressions, including permitted source-field expressions, are allowed. This
+conservative rule guarantees that any remaining ordering peers are not
+distinct across the complete result schema, without relying on catalog
+uniqueness constraints.
+
 ## 16. Nullability summary
 
 Unless a more specific rule in this document applies:
@@ -481,6 +506,8 @@ Typing errors include:
 - an expression that is not valid for its aggregate query;
 - incompatible set-operation arity or field types;
 - a nullable ordering expression without explicit null placement; or
+- an ordering used by `LIMIT` or `OFFSET` that does not directly reference
+  every result field; or
 - incomplete `ROW_NUMBER` ordering.
 
 Evaluation errors include:

@@ -68,6 +68,13 @@
       }
     },
     {
+      "id": "grouped-row-number",
+      "source": "accepted/grouped-row-number.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
       "id": "partitioned-boolean-aggregates",
       "source": "accepted/partitioned-boolean-aggregates.sql",
       "expect": {
@@ -191,6 +198,14 @@
       }
     },
     {
+      "id": "distinct-order-by-source",
+      "source": "rejected/distinct-order-by-source.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
       "id": "select-alias-in-where",
       "source": "rejected/select-alias-in-where.sql",
       "expect": {
@@ -305,6 +320,14 @@
     {
       "id": "type-incomplete-row-number-order",
       "source": "rejected/type-incomplete-row-number-order.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
+    },
+    {
+      "id": "type-incomplete-row-bound-order",
+      "source": "rejected/type-incomplete-row-bound-order.sql",
       "expect": {
         "outcome": "error",
         "phase": "typing"

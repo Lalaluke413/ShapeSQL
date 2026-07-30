@@ -11,5 +11,5 @@ SELECT
 FROM outer_rows AS o
 LEFT JOIN totals AS t ON t.group_id = o.group_id
 WHERE o.id > 0
-ORDER BY o.group_id ASC NULLS LAST
+ORDER BY group_id ASC, total ASC NULLS LAST
 LIMIT 10 OFFSET 0;

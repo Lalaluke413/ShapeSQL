@@ -37,6 +37,7 @@ The initial cases establish that:
   binding rules;
 - representative literals, casts, operators, predicates, aggregates, set
   fields, ordering expressions, and ranking expressions follow the type rules;
-  and
+- `SELECT DISTINCT` ordering uses only result fields, and row bounds require an
+  ordering complete over result values; and
 - representative program, query, expression, and window forms have the
   syntactic outcomes required by the grammar.

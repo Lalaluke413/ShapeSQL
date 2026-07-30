@@ -111,9 +111,16 @@ field types. Exact compatibility rules are defined by
 
 An `ORDER BY` item MUST resolve according to
 [Binding](07-binding.md#10-order-by-binding). It may refer to result fields by
-name or ordinal and, for a direct unparenthesized `select_query`, may refer to
-its source fields. Default null placement is not defined: v0.1 programs that
-sort a nullable expression MUST state `NULLS FIRST` or `NULLS LAST`.
+name or ordinal and, for a direct unparenthesized non-`DISTINCT`
+`select_query`, may refer to its source fields. Default null placement is not
+defined: v0.1 programs that sort a nullable expression MUST state
+`NULLS FIRST` or `NULLS LAST`.
+
+When `LIMIT` or `OFFSET` is present, the `ORDER BY` list MUST directly
+reference every result field. This ensures that a row bound can cut an
+ordering peer group only when all rows in that group are not distinct. The
+exact completeness rule is defined by
+[Types and type checking](08-types-and-type-checking.md#15-ordering-and-row-bounds).
 
 ### 3.8 Partitioned operations
 
@@ -129,9 +136,11 @@ Partitioned aggregates MAY use `PARTITION BY` but MUST NOT use a window
 `ORDER BY` or frame clause. Ranking functions MUST use a window `ORDER BY` and
 MAY use `PARTITION BY`.
 
-The window `ORDER BY` for `ROW_NUMBER` MUST contain a direct reference to every
-field visible at the window-evaluation stage. This guarantees a complete order
-of distinct row values without relying on runtime uniqueness. `RANK` and
+The window `ORDER BY` for `ROW_NUMBER` MUST completely order distinct row
+values at the window-evaluation stage. For a non-aggregate query, it does so by
+directly referencing every visible source field. For a grouped query, it does
+so by containing every grouping expression. A global aggregate has at most
+one row at that stage and needs no additional completeness proof. `RANK` and
 `DENSE_RANK` MAY intentionally contain peer groups.
 
 Named window specifications, offset functions such as `LAG` and `LEAD`,
@@ -174,6 +183,11 @@ different order between executions.
 An `ORDER BY` that does not uniquely order the result does not define the order
 among peers. A query that requires a fully repeatable sequence MUST include
 enough ordering expressions to distinguish every result row.
+
+When a query uses `LIMIT` or `OFFSET`, the completeness requirement in Section
+3.7 guarantees that ordering peers have equal complete result values.
+Selecting among duplicate occurrences therefore cannot change the bounded
+result bag.
 
 ## 6. Host boundary
 
