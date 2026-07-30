@@ -92,7 +92,7 @@ unbounded computation.
 The current work is to establish:
 
 1. the exact ShapeSQL language subset and observable query behavior;
-2. the lexical structure and grammar of ShapeSQL source;
+2. the lexical structure, grammar, and binding rules of ShapeSQL source;
 3. its type rules, null semantics, and multiplicity semantics;
 4. the typed relational Shape IR; and
 5. a corpus of accepted and rejected queries with expected results or errors.

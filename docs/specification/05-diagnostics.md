@@ -14,7 +14,7 @@ ShapeSQL defines the following phases:
 | --- | --- | --- |
 | `lexical` | Source | Invalid tokenization. |
 | `syntactic` | Source | Tokens do not match the grammar. |
-| `binding` | Source | Invalid name resolution or reference. |
+| `binding` | Source | Invalid name resolution, visibility, or CTE dependency. |
 | `typing` | Source | Invalid type, nullability, or arity. |
 | `shape-ir-validation` | Shape IR | Invalid graph invariant. |
 | `evaluation` | Shape IR and inputs | Required evaluation failure. |
@@ -38,8 +38,9 @@ information needed to establish the violation.
 
 Token spelling and source encoding are lexical concerns. Token arrangement is
 a syntactic concern. Resolving relation, field, alias, and common-table
-expression names is a binding concern. Applying operator signatures and other
-static semantic rules to a bound program is a typing concern.
+expression names according to [Binding](07-binding.md) is a binding concern.
+Applying operator signatures and other static semantic rules to a bound
+program is a typing concern.
 
 Whether a subquery reference is correlated depends on which field the
 reference resolves to. A prohibited correlated reference in `EXISTS`, `IN`, or

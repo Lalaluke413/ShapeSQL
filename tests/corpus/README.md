@@ -33,6 +33,7 @@ The initial cases establish that:
 - uncorrelated relational predicates are accepted;
 - correlated `EXISTS` and `IN` subqueries are binding errors;
 - grouped and partitioned `BOOL_AND` and `BOOL_OR` expressions are accepted;
-  and
+- relation, source, field, alias, wildcard, and ordering names follow the
+  binding rules; and
 - representative program, query, expression, and window forms have the
   syntactic outcomes required by the grammar.

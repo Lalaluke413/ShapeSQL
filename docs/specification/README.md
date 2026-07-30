@@ -29,6 +29,8 @@ non-normative provides context only.
    their use by the conformance corpus.
 7. [Grammar](06-grammar.md) defines complete programs, query forms, expression
    precedence, reserved keywords, and syntactic error boundaries.
+8. [Binding](07-binding.md) defines relation and field name resolution,
+   visibility, aliases, wildcard expansion, result names, and field identity.
 
 The initial [conformance corpus](../../tests/corpus/README.md) contains
 machine-readable front-end cases. It will grow alongside the normative

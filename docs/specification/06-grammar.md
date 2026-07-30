@@ -122,7 +122,7 @@ expression_list =
 
 An unqualified wildcard selects every field visible to the query block. A
 qualified wildcard names a relation source or source alias. Wildcard expansion
-and alias visibility are binding rules.
+and alias visibility are defined by [Binding](07-binding.md).
 
 `AS` is optional for a select-item alias. Because every ShapeSQL keyword is
 reserved, omitting `AS` does not permit a clause keyword to be consumed as an
@@ -202,9 +202,9 @@ once. They are syntactically permitted only after `ORDER BY`. Because a sign is
 a separate token, these productions accept only unsigned integer literals.
 Range checking occurs during typing.
 
-Whether an ordering expression is nullable, whether it therefore requires an
-explicit null placement, and how an integer literal is interpreted as an
-ordinal are static semantic rules rather than grammar rules.
+Whether an ordering expression is nullable and whether it therefore requires
+an explicit null placement are typing rules. The interpretation and resolution
+of an ordering ordinal is a [binding rule](07-binding.md#10-order-by-binding).
 
 ## 8. Scalar expressions
 
@@ -319,7 +319,7 @@ the grammar.
 
 A qualified column reference contains exactly a source name or alias and a
 field name. The meaning of unqualified and qualified references is determined
-during binding.
+during [binding](07-binding.md).
 
 ## 10. Aggregate and partitioned expressions
 
@@ -419,5 +419,5 @@ particular, it does not determine:
 - whether an `IN` query has exactly one result field; or
 - whether ordering and bounds satisfy their static semantic requirements.
 
-Violations of those rules are binding or typing errors as assigned by their
-normative documents, not syntactic errors.
+Violations of those rules are binding or typing errors as assigned by
+[Binding](07-binding.md) and the type-system document, not syntactic errors.

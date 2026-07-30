@@ -109,10 +109,11 @@ type-system document.
 - `LIMIT` with a non-negative integer literal; and
 - `OFFSET` with a non-negative integer literal.
 
-An `ORDER BY` item MUST be a result field, its ordinal position, or an
-expression accepted by the query's projection environment. Default null
-placement is not defined: v0.1 programs that sort a nullable expression MUST
-state `NULLS FIRST` or `NULLS LAST`.
+An `ORDER BY` item MUST resolve according to
+[Binding](07-binding.md#10-order-by-binding). It may refer to result fields by
+name or ordinal and, for a direct unparenthesized `select_query`, may refer to
+its source fields. Default null placement is not defined: v0.1 programs that
+sort a nullable expression MUST state `NULLS FIRST` or `NULLS LAST`.
 
 ### 3.8 Partitioned operations
 
@@ -179,7 +180,7 @@ enough ordering expressions to distinguish every result row.
 The host environment, not ShapeSQL, is responsible for:
 
 - choosing the input snapshot;
-- resolving authorized relation names;
+- supplying the authorized catalog relation namespace;
 - supplying input schemas and data;
 - transaction isolation and concurrency;
 - persistence and recovery; and

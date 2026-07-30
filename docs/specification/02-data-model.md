@@ -11,7 +11,7 @@ compression, and transport.
 A schema is an ordered sequence of zero or more fields. Each field has:
 
 - an identity unique within the schema;
-- a display name;
+- a display name, which MAY be empty;
 - one scalar type; and
 - a nullability property.
 
@@ -19,9 +19,10 @@ Field identity, rather than display name or ordinal position, is used inside
 typed IR. This permits a planner to distinguish same-named fields introduced
 by a join.
 
-SQL source resolves fields by name according to binding rules. An unqualified
-reference that matches more than one visible field is a binding error. A result
-schema MAY contain duplicate display names.
+SQL source resolves fields by name according to
+[binding rules](07-binding.md). An unqualified reference that matches more
+than one visible field is a binding error. A result schema MAY contain
+duplicate display names.
 
 The order of fields in a schema is observable and MUST be preserved unless a
 query construct explicitly produces a different schema.

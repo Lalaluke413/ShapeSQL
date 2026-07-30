@@ -75,6 +75,27 @@
       }
     },
     {
+      "id": "binding-alias-wildcard",
+      "source": "accepted/binding-alias-wildcard.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "order-by-ordinal",
+      "source": "accepted/order-by-ordinal.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "forward-cte-reference",
+      "source": "accepted/forward-cte-reference.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
       "id": "correlated-exists",
       "source": "rejected/correlated-exists.sql",
       "expect": {
@@ -136,6 +157,78 @@
       "expect": {
         "outcome": "error",
         "phase": "syntactic"
+      }
+    },
+    {
+      "id": "ambiguous-column",
+      "source": "rejected/ambiguous-column.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "cte-cycle",
+      "source": "rejected/cte-cycle.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "hidden-source-qualifier",
+      "source": "rejected/hidden-source-qualifier.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "select-alias-in-where",
+      "source": "rejected/select-alias-in-where.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "unknown-wildcard-qualifier",
+      "source": "rejected/unknown-wildcard-qualifier.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "ambiguous-order-alias",
+      "source": "rejected/ambiguous-order-alias.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "order-by-ordinal-out-of-range",
+      "source": "rejected/order-by-ordinal-out-of-range.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "duplicate-source-qualifier",
+      "source": "rejected/duplicate-source-qualifier.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
+      }
+    },
+    {
+      "id": "unknown-relation",
+      "source": "rejected/unknown-relation.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "binding"
       }
     }
   ]

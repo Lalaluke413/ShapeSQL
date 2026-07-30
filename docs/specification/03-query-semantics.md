@@ -30,7 +30,8 @@ evaluation errors as defined in
 ## 3. Relation sources
 
 A named relation source contributes every row occurrence from the input
-relation and makes its fields visible in the query block's binding environment.
+relation and makes its fields visible according to
+[Binding](07-binding.md).
 
 A derived table or common table expression is evaluated according to its query
 and contributes the resulting relation. Its internal ordering is discarded
@@ -88,6 +89,9 @@ order.
 
 Projection preserves input multiplicity. Two input rows that produce equal
 result rows remain duplicate occurrences unless `DISTINCT` applies.
+
+Binding determines projected field identities and display names. Projection
+determines their values, types, and nullability.
 
 The nullability of a projected field MUST include every case in which its
 expression can evaluate to `NULL`.
