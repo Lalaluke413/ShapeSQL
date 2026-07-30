@@ -372,6 +372,14 @@
         "outcome": "error",
         "phase": "typing"
       }
+    },
+    {
+      "id": "type-window-in-distinct-order",
+      "source": "rejected/type-window-in-distinct-order.sql",
+      "expect": {
+        "outcome": "error",
+        "phase": "typing"
+      }
     }
   ]
 }

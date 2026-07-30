@@ -60,6 +60,7 @@ fn accepts_cases_assigned_to_later_static_phases() {
         "type-unconstrained-null.sql",
         "type-ungrouped-column.sql",
         "type-unsupported-cast.sql",
+        "type-window-in-distinct-order.sql",
         "unknown-relation.sql",
         "unknown-wildcard-qualifier.sql",
     ];

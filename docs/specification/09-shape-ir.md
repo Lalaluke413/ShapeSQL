@@ -579,9 +579,9 @@ A common-table-expression name does not require a Shape IR node. A front end
 MAY share or duplicate its subgraph, provided relation occurrences receive the
 required fresh field identities and evaluation errors remain observable.
 
-The exact translation of every accepted syntax form will be defined by the
-separate source-to-IR lowering specification. That document may select a
-canonical graph shape but MUST NOT change the valid node semantics in this
+The exact translation of every accepted syntax form is defined by
+[Source-to-IR lowering](10-source-to-ir-lowering.md). That document selects a
+reference graph shape but does not change the valid node semantics in this
 document.
 
 ## 9. Evaluation errors and rewrites

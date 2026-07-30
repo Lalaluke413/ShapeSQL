@@ -270,6 +270,19 @@ Result fields have no source qualifiers. An ordered set operation,
 parenthesized query, or `SELECT DISTINCT` therefore permits only references
 resolvable through its result namespace.
 
+When a partitioned aggregate or ranking invocation occurs in an outer
+`ORDER BY` attached directly to an unparenthesized `select_query`, its
+aggregate argument, `PARTITION BY` expressions, and window `ORDER BY`
+expressions are bound against that select query's source namespace. The result
+namespace is not visible within the invocation, including when the select
+query uses `DISTINCT`. Result-namespace resolution resumes in the containing
+outer ordering expression.
+
+This stage-local rule does not make source fields visible elsewhere in the
+outer ordering expression. Typing rejects an ordering-only window invocation
+on `SELECT DISTINCT`. The rule preserves the earlier logical evaluation stage
+of a permitted invocation and the select-alias visibility rule in Section 7.
+
 Result fields take precedence over same-named source fields. This makes a
 select-item alias usable both as a complete order item and within a larger
 ordering expression.

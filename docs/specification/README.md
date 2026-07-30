@@ -37,6 +37,10 @@ non-normative provides context only.
 10. [Shape IR](09-shape-ir.md) defines the typed relational graph, scalar
     expression representation, logical node set, validation rules, ordering
     flow, and physical-lowering boundary.
+11. [Source-to-IR lowering](10-source-to-ir-lowering.md) defines the reference
+    translation of bound, typed ShapeSQL into Shape IR, including stage
+    extraction, field re-identification, hidden ordering values, and
+    demand-preserving nested-query handling.
 
 The initial [conformance corpus](../../tests/corpus/README.md) contains
 machine-readable front-end cases. It will grow alongside the normative
@@ -44,11 +48,9 @@ documents.
 
 ## Planned documents
 
-The following documents should be added as the implementation becomes
+The following document should be added as the implementation becomes
 concrete:
 
-- **Source-to-IR lowering** — translation from every accepted syntax form to
-  Shape IR.
 - **Shape IR interchange** — a stable encoding and direct IR conformance
   fixtures.
 

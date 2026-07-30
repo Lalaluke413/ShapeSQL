@@ -340,8 +340,15 @@ aggregate, partitioned aggregate, or ranking expression.
 A grouping aggregate MAY occur only in the `SELECT` list or `HAVING`.
 
 A partitioned aggregate or ranking expression MAY occur only in the `SELECT`
-list or in an `ORDER BY` attached directly to one unparenthesized
-`select_query`.
+list or in an `ORDER BY` attached directly to one unparenthesized,
+non-`DISTINCT` `select_query`.
+
+For `SELECT DISTINCT`, a partitioned or ranking result may be selected and
+then referenced through its result field by `ORDER BY`. Such an invocation
+MUST NOT first appear in the outer `ORDER BY`: it is evaluated before
+projection and duplicate elimination, so a projected duplicate class is not
+guaranteed to have one value for that invocation unless the value participates
+in the projection.
 
 An aggregate or ranking expression MUST NOT occur within:
 

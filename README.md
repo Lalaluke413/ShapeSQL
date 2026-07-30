@@ -44,7 +44,9 @@ Parsing algorithms, optimization strategy, and evaluation mechanisms are
 implementation concerns outside the specification.
 
 See [Shape IR](docs/specification/09-shape-ir.md) for the portable logical
-graph and its boundary with a future physical execution representation.
+graph and its boundary with a future physical execution representation. See
+[Source-to-IR lowering](docs/specification/10-source-to-ir-lowering.md) for
+the reference translation from typed ShapeSQL into that graph.
 
 ## Draft v0.1 scope
 
@@ -98,11 +100,13 @@ The project currently defines:
 2. the lexical structure, grammar, and binding rules of ShapeSQL source;
 3. its type rules, null semantics, and multiplicity semantics;
 4. the typed relational Shape IR; and
-5. an initial corpus of accepted and rejected front-end cases.
+5. the reference source-to-IR lowering; and
+6. an initial corpus of accepted and rejected front-end cases.
 
 The reference implementation currently includes a handwritten lexer and
-recursive-descent parser for the complete ShapeSQL 0.1 grammar. Source-to-IR
-lowering, direct IR fixtures, and evaluation cases remain to be implemented.
+recursive-descent parser for the complete ShapeSQL 0.1 grammar. The binder,
+type checker, source-to-IR lowerer, direct IR fixtures, and evaluation cases
+remain to be implemented.
 
 ## License
 
