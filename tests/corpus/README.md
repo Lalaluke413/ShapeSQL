@@ -31,6 +31,8 @@ bag, and ordering once the corpus format for typed values is defined.
 The initial cases establish that:
 
 - uncorrelated relational predicates are accepted;
-- correlated `EXISTS` and `IN` subqueries are binding errors; and
+- correlated `EXISTS` and `IN` subqueries are binding errors;
+- grouped and partitioned `BOOL_AND` and `BOOL_OR` expressions are accepted;
+  and
 - representative program, query, expression, and window forms have the
   syntactic outcomes required by the grammar.

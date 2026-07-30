@@ -138,13 +138,24 @@ An aggregate consumes the bag of values contributed by one group.
 - `SUM(e)` returns the sum of non-`NULL` values.
 - `MIN(e)` returns the least non-`NULL` value.
 - `MAX(e)` returns the greatest non-`NULL` value.
+- `BOOL_AND(e)` returns `TRUE` when every non-`NULL` value is `TRUE`, and
+  `FALSE` when any non-`NULL` value is `FALSE`.
+- `BOOL_OR(e)` returns `TRUE` when any non-`NULL` value is `TRUE`, and `FALSE`
+  when every non-`NULL` value is `FALSE`.
 
-`SUM`, `MIN`, and `MAX` ignore `NULL`. They return `NULL` when no non-`NULL`
-value is present. `COUNT` returns `0` for an empty input.
+`SUM`, `MIN`, `MAX`, `BOOL_AND`, and `BOOL_OR` ignore `NULL`. They return
+`NULL` when no non-`NULL` value is present. `COUNT` returns `0` for an empty
+input.
+
+The argument `e` is evaluated once for every row occurrence in the group.
+In particular, an implementation MUST NOT stop evaluating `BOOL_AND` after a
+`FALSE` input or `BOOL_OR` after a `TRUE` input when doing so would suppress a
+required evaluation error.
 
 `COUNT` returns `INT64`. A count greater than the maximum `INT64` value is an
 evaluation error. `SUM` over `INT64` is an evaluation error when its exact result
-is outside the `INT64` range.
+is outside the `INT64` range. `BOOL_AND` and `BOOL_OR` accept `BOOLEAN` and
+return `BOOLEAN`.
 
 ## 10. Duplicate elimination
 

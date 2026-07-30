@@ -84,10 +84,9 @@ Scalar-valued and row-valued subquery expressions are excluded.
 
 - `GROUP BY` over scalar expressions;
 - `HAVING`; and
-- `COUNT`, `SUM`, `MIN`, and `MAX`.
+- `COUNT`, `SUM`, `MIN`, `MAX`, `BOOL_AND`, and `BOOL_OR`.
 
-This is the complete aggregate set for ShapeSQL 0.1. `AVG`, `BOOL_AND`, and
-`BOOL_OR` are excluded.
+This is the complete aggregate set for ShapeSQL 0.1. `AVG` is excluded.
 
 `GROUPING SETS`, `ROLLUP`, `CUBE`, ordered-set aggregates, hypothetical-set
 aggregates, and user-defined aggregates are excluded.
@@ -119,7 +118,8 @@ state `NULLS FIRST` or `NULLS LAST`.
 
 ShapeSQL 0.1 includes only:
 
-- `COUNT`, `SUM`, `MIN`, and `MAX` over an entire partition;
+- `COUNT`, `SUM`, `MIN`, `MAX`, `BOOL_AND`, and `BOOL_OR` over an entire
+  partition;
 - `ROW_NUMBER`;
 - `RANK`; and
 - `DENSE_RANK`.

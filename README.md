@@ -51,7 +51,7 @@ The first language version is query-only. Its intended features include:
 - inner, outer, and cross joins;
 - non-recursive common table expressions and derived tables;
 - relational predicates such as `EXISTS`, `IN`, and their negations;
-- grouping and a small, explicit aggregate set;
+- grouping with `COUNT`, `SUM`, `MIN`, `MAX`, `BOOL_AND`, and `BOOL_OR`;
 - `UNION`, `INTERSECT`, and `EXCEPT`;
 - `ORDER BY`, `LIMIT`, and `OFFSET`; and
 - a deliberately limited set of partitioned aggregate and ranking operations.

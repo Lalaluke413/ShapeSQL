@@ -331,7 +331,9 @@ aggregate_invocation =
       "COUNT", "(", ( "*" | expression ), ")"
     | "SUM", "(", expression, ")"
     | "MIN", "(", expression, ")"
-    | "MAX", "(", expression, ")" ;
+    | "MAX", "(", expression, ")"
+    | "BOOL_AND", "(", expression, ")"
+    | "BOOL_OR", "(", expression, ")" ;
 
 aggregate_window =
     "OVER", "(",
@@ -373,7 +375,7 @@ Every keyword used by the grammar is reserved:
 
 ```text
 ALL AND AS ASC
-BOOLEAN BY
+BOOLEAN BOOL_AND BOOL_OR BY
 CASE CAST COUNT CROSS
 DENSE_RANK DESC DISTINCT
 ELSE END EXCEPT EXISTS
@@ -398,9 +400,9 @@ A reserved keyword cannot be a regular identifier. It may be used as a
 delimited identifier.
 
 Words associated only with excluded features, such as `INSERT`, `VALUES`,
-`UPDATE`, `DELETE`, `AVG`, `BOOL_AND`, and `BOOL_OR`, are not ShapeSQL 0.1
-keywords. Their use does not introduce those features; a token sequence must
-still match the complete grammar above.
+`UPDATE`, `DELETE`, and `AVG`, are not ShapeSQL 0.1 keywords. Their use does
+not introduce those features; a token sequence must still match the complete
+grammar above.
 
 ## 12. Grammar and later analysis
 

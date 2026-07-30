@@ -23,6 +23,11 @@
         "name": "group_id",
         "type": "INT64",
         "nullable": false
+      },
+      {
+        "name": "flag",
+        "type": "BOOLEAN",
+        "nullable": true
       }
     ]
   },
@@ -51,6 +56,20 @@
     {
       "id": "set-precedence",
       "source": "accepted/set-precedence.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "grouped-boolean-aggregates",
+      "source": "accepted/grouped-boolean-aggregates.sql",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "partitioned-boolean-aggregates",
+      "source": "accepted/partitioned-boolean-aggregates.sql",
       "expect": {
         "outcome": "accepted"
       }
