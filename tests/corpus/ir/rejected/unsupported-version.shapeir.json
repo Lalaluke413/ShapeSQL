@@ -1,0 +1,13 @@
+{
+  "interchange_version": "0.2",
+  "shape_ir_version": "0.1",
+  "root": "n0",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "empty",
+      "output_schema": [],
+      "collection": "bag"
+    }
+  ]
+}

@@ -1,0 +1,617 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n12",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "left_rows",
+      "output_schema": [
+        {
+          "id": "f_left_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "f_keep",
+          "name": "keep",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n1",
+      "kind": "input",
+      "binding": "right_rows",
+      "output_schema": [
+        {
+          "id": "f_right_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n2",
+      "kind": "join",
+      "left": "n0",
+      "right": "n1",
+      "join_type": "inner",
+      "condition": {
+        "kind": "binary",
+        "type": {
+          "scalar": "boolean",
+          "nullable": false
+        },
+        "operation": "equal",
+        "left": {
+          "kind": "field",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          },
+          "field": "f_left_key"
+        },
+        "right": {
+          "kind": "field",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          },
+          "field": "f_right_key"
+        }
+      },
+      "output_schema": [
+        {
+          "id": "f_left_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "f_keep",
+          "name": "keep",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        },
+        {
+          "id": "f_right_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n3",
+      "kind": "filter",
+      "input": "n2",
+      "predicate": {
+        "kind": "field",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        },
+        "field": "f_keep"
+      },
+      "output_schema": [
+        {
+          "id": "f_left_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "f_keep",
+          "name": "keep",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        },
+        {
+          "id": "f_right_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n4",
+      "kind": "aggregate",
+      "input": "n3",
+      "grouping_keys": [
+        {
+          "output": "g_key",
+          "expression": {
+            "kind": "field",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "field": "f_left_key"
+          }
+        }
+      ],
+      "aggregates": [
+        {
+          "output": "a_count",
+          "function": "count_all"
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n5",
+      "kind": "window",
+      "input": "n4",
+      "definitions": [
+        {
+          "kind": "partitioned_aggregate",
+          "output": "w_partition_count",
+          "function": "count_all",
+          "partition_by": [
+            {
+              "kind": "field",
+              "type": {
+                "scalar": "int64",
+                "nullable": false
+              },
+              "field": "g_key"
+            }
+          ]
+        },
+        {
+          "kind": "ranking",
+          "output": "w_position",
+          "function": "row_number",
+          "partition_by": [],
+          "order_by": [
+            {
+              "expression": {
+                "kind": "field",
+                "type": {
+                  "scalar": "int64",
+                  "nullable": false
+                },
+                "field": "g_key"
+              },
+              "direction": "ascending",
+              "null_placement": "not_applicable"
+            }
+          ]
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n6",
+      "kind": "project",
+      "input": "n5",
+      "entries": [
+        {
+          "kind": "keep",
+          "field": "g_key"
+        },
+        {
+          "kind": "keep",
+          "field": "a_count"
+        },
+        {
+          "kind": "keep",
+          "field": "w_partition_count"
+        },
+        {
+          "kind": "keep",
+          "field": "w_position"
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n7",
+      "kind": "distinct",
+      "input": "n6",
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n8",
+      "kind": "order",
+      "input": "n7",
+      "items": [
+        {
+          "expression": {
+            "kind": "field",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "field": "g_key"
+          },
+          "direction": "ascending",
+          "null_placement": "not_applicable"
+        },
+        {
+          "expression": {
+            "kind": "field",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "field": "a_count"
+          },
+          "direction": "descending",
+          "null_placement": "not_applicable"
+        },
+        {
+          "expression": {
+            "kind": "field",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "field": "w_partition_count"
+          },
+          "direction": "ascending",
+          "null_placement": "not_applicable"
+        },
+        {
+          "expression": {
+            "kind": "field",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "field": "w_position"
+          },
+          "direction": "ascending",
+          "null_placement": "not_applicable"
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "ordered"
+    },
+    {
+      "id": "n9",
+      "kind": "slice",
+      "input": "n8",
+      "offset": "0",
+      "limit": "10",
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "ordered"
+    },
+    {
+      "id": "n10",
+      "kind": "forget_order",
+      "input": "n9",
+      "output_schema": [
+        {
+          "id": "g_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "a_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "w_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n11",
+      "kind": "empty",
+      "output_schema": [
+        {
+          "id": "e_key",
+          "name": "unused_key",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "e_count",
+          "name": "unused_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "e_partition_count",
+          "name": "unused_partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "e_position",
+          "name": "unused_position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n12",
+      "kind": "set",
+      "left": "n10",
+      "right": "n11",
+      "operation": "union",
+      "quantifier": "all",
+      "output_schema": [
+        {
+          "id": "s_key",
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "s_count",
+          "name": "row_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "s_partition_count",
+          "name": "partition_count",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "s_position",
+          "name": "position",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n1",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "rows",
+      "output_schema": [
+        {
+          "id": "f0",
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n1",
+      "kind": "filter",
+      "input": "n0",
+      "predicate": {
+        "kind": "literal",
+        "type": {
+          "scalar": "boolean",
+          "nullable": false
+        },
+        "value": true
+      },
+      "output_schema": [],
+      "collection": "bag"
+    }
+  ]
+}

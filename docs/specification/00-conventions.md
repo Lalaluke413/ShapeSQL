@@ -41,6 +41,8 @@ This specification uses the following terms:
   services outside ShapeSQL.
 - **Shape IR**: the portable, statically typed relational representation of a
   ShapeSQL query.
+- **Shape IR interchange document**: one portable encoded Shape IR graph under
+  a claimed interchange and Shape IR version.
 - **observable behavior**: a result schema, result bag, required result order,
   or specified error outcome visible outside the implementation.
 
@@ -63,7 +65,27 @@ A conforming front end:
 - MUST report an error in the phase required by the specification when that
   phase is defined.
 
-### 4.2 Shape IR evaluation conformance
+### 4.2 Shape IR interchange conformance
+
+A conforming Shape IR interchange producer:
+
+- MUST emit every graph it exposes in a document valid under its claimed
+  interchange version; and
+- MUST NOT omit or move into non-semantic metadata a property required to
+  reconstruct that graph.
+
+A conforming Shape IR interchange consumer:
+
+- MUST decode every structurally valid document in its claimed interchange
+  and Shape IR versions;
+- MUST reconstruct the represented graph exactly; and
+- MUST distinguish interchange decoding failures from violations in a
+  successfully reconstructed Shape IR graph.
+
+The encoding and error boundary are defined by
+[Shape IR interchange](11-shape-ir-interchange.md).
+
+### 4.3 Shape IR evaluation conformance
 
 A conforming Shape IR evaluator:
 
@@ -73,10 +95,12 @@ A conforming Shape IR evaluator:
 - MUST report specified evaluation errors rather than silently produce a
   different result.
 
-### 4.3 End-to-end conformance
+### 4.4 End-to-end conformance
 
 A conforming end-to-end implementation MUST satisfy both front-end and
 Shape IR evaluation conformance for the same language and Shape IR versions.
+It need not claim interchange conformance when the front end and evaluator
+communicate only through a native in-memory representation.
 
 Extensions MUST NOT change the meaning of valid ShapeSQL programs. An
 implementation that accepts extensions MUST provide a mode in which programs
@@ -98,6 +122,9 @@ The following notation is used where prose would be ambiguous:
 
 A **static error** occurs during lexical, syntactic, binding, or typing
 analysis of ShapeSQL source and prevents Shape IR evaluation.
+
+A **Shape IR interchange error** occurs when a purported interchange document
+cannot be decoded or mapped under its claimed interchange version.
 
 A **Shape IR validation error** occurs when a Shape IR graph violates the
 structural, binding, or typing invariants of its claimed Shape IR version.
@@ -136,9 +163,11 @@ constant folding MUST NOT make otherwise invalid ShapeSQL source acceptable.
 
 ## 8. Versioning
 
-Language and Shape IR versions are independent. Supporting ShapeSQL 0.1 does
-not imply support for every future Shape IR version.
+Language, Shape IR, and Shape IR interchange versions are independent.
+Supporting ShapeSQL 0.1 does not imply support for every future Shape IR or
+interchange version.
 
 Before ShapeSQL 0.1 is declared stable, this draft may introduce incompatible
 changes. After stabilization, an implementation MUST identify the language and
-Shape IR versions to which it claims conformance.
+Shape IR versions to which it claims conformance and any interchange version
+it supports.

@@ -1,0 +1,401 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n3",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "main_rows",
+      "output_schema": [
+        {
+          "id": "f_int",
+          "name": "number",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "f_bool",
+          "name": "flag",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        },
+        {
+          "id": "f_text",
+          "name": "label",
+          "type": {
+            "scalar": "text",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n1",
+      "kind": "input",
+      "binding": "existence_rows",
+      "output_schema": [
+        {
+          "id": "f_exists",
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n2",
+      "kind": "input",
+      "binding": "membership_rows",
+      "output_schema": [
+        {
+          "id": "f_member",
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": true
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n3",
+      "kind": "project",
+      "input": "n0",
+      "entries": [
+        {
+          "kind": "compute",
+          "output": "r_field",
+          "expression": {
+            "kind": "field",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "field": "f_int"
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_unary",
+          "expression": {
+            "kind": "unary",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "operation": "negative",
+            "operand": {
+              "kind": "field",
+              "type": {
+                "scalar": "int64",
+                "nullable": false
+              },
+              "field": "f_int"
+            }
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_binary",
+          "expression": {
+            "kind": "binary",
+            "type": {
+              "scalar": "text",
+              "nullable": false
+            },
+            "operation": "concatenate",
+            "left": {
+              "kind": "field",
+              "type": {
+                "scalar": "text",
+                "nullable": false
+              },
+              "field": "f_text"
+            },
+            "right": {
+              "kind": "literal",
+              "type": {
+                "scalar": "text",
+                "nullable": false
+              },
+              "value": "!"
+            }
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_is_null",
+          "expression": {
+            "kind": "is_null",
+            "type": {
+              "scalar": "boolean",
+              "nullable": false
+            },
+            "operand": {
+              "kind": "field",
+              "type": {
+                "scalar": "boolean",
+                "nullable": true
+              },
+              "field": "f_bool"
+            },
+            "negated": false
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_case",
+          "expression": {
+            "kind": "case",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "arms": [
+              {
+                "when": {
+                  "kind": "is_null",
+                  "type": {
+                    "scalar": "boolean",
+                    "nullable": false
+                  },
+                  "operand": {
+                    "kind": "field",
+                    "type": {
+                      "scalar": "boolean",
+                      "nullable": true
+                    },
+                    "field": "f_bool"
+                  },
+                  "negated": false
+                },
+                "then": {
+                  "kind": "literal",
+                  "type": {
+                    "scalar": "int64",
+                    "nullable": false
+                  },
+                  "value": "0"
+                }
+              }
+            ],
+            "fallback": {
+              "kind": "field",
+              "type": {
+                "scalar": "int64",
+                "nullable": false
+              },
+              "field": "f_int"
+            }
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_cast",
+          "expression": {
+            "kind": "cast",
+            "type": {
+              "scalar": "text",
+              "nullable": false
+            },
+            "operand": {
+              "kind": "field",
+              "type": {
+                "scalar": "int64",
+                "nullable": false
+              },
+              "field": "f_int"
+            },
+            "target": "text"
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_in_list",
+          "expression": {
+            "kind": "in_list",
+            "type": {
+              "scalar": "boolean",
+              "nullable": false
+            },
+            "value": {
+              "kind": "field",
+              "type": {
+                "scalar": "int64",
+                "nullable": false
+              },
+              "field": "f_int"
+            },
+            "candidates": [
+              {
+                "kind": "literal",
+                "type": {
+                  "scalar": "int64",
+                  "nullable": false
+                },
+                "value": "1"
+              },
+              {
+                "kind": "literal",
+                "type": {
+                  "scalar": "int64",
+                  "nullable": false
+                },
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_exists",
+          "expression": {
+            "kind": "exists",
+            "type": {
+              "scalar": "boolean",
+              "nullable": false
+            },
+            "query": "n1",
+            "metadata": {
+              "example.note": "demand-evaluated"
+            }
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_in_query",
+          "expression": {
+            "kind": "in_query",
+            "type": {
+              "scalar": "boolean",
+              "nullable": true
+            },
+            "value": {
+              "kind": "field",
+              "type": {
+                "scalar": "int64",
+                "nullable": false
+              },
+              "field": "f_int"
+            },
+            "query": "n2",
+            "field": "f_member"
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "r_not",
+          "expression": {
+            "kind": "unary",
+            "type": {
+              "scalar": "boolean",
+              "nullable": true
+            },
+            "operation": "not",
+            "operand": {
+              "kind": "field",
+              "type": {
+                "scalar": "boolean",
+                "nullable": true
+              },
+              "field": "f_bool"
+            }
+          }
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "r_field",
+          "name": "direct_number",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_unary",
+          "name": "negative_number",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_binary",
+          "name": "marked_label",
+          "type": {
+            "scalar": "text",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_is_null",
+          "name": "flag_is_null",
+          "type": {
+            "scalar": "boolean",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_case",
+          "name": "chosen_number",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_cast",
+          "name": "number_text",
+          "type": {
+            "scalar": "text",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_in_list",
+          "name": "listed",
+          "type": {
+            "scalar": "boolean",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_exists",
+          "name": "has_rows",
+          "type": {
+            "scalar": "boolean",
+            "nullable": false
+          }
+        },
+        {
+          "id": "r_in_query",
+          "name": "is_member",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        },
+        {
+          "id": "r_not",
+          "name": "not_flag",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        }
+      ],
+      "collection": "bag"
+    }
+  ]
+}

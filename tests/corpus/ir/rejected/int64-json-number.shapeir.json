@@ -1,0 +1,43 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n2",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "empty",
+      "output_schema": [],
+      "collection": "bag"
+    },
+    {
+      "id": "n1",
+      "kind": "order",
+      "input": "n0",
+      "items": [
+        {
+          "expression": {
+            "kind": "literal",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "value": "0"
+          },
+          "direction": "ascending",
+          "null_placement": "not_applicable"
+        }
+      ],
+      "output_schema": [],
+      "collection": "ordered"
+    },
+    {
+      "id": "n2",
+      "kind": "slice",
+      "input": "n1",
+      "offset": 0,
+      "limit": null,
+      "output_schema": [],
+      "collection": "ordered"
+    }
+  ]
+}

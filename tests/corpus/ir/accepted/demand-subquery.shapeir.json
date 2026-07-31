@@ -1,0 +1,79 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n2",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "main_rows",
+      "output_schema": [
+        {
+          "id": "f_main",
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n1",
+      "kind": "input",
+      "binding": "audit_rows",
+      "output_schema": [
+        {
+          "id": "f_audit",
+          "name": "audit_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n2",
+      "kind": "filter",
+      "input": "n0",
+      "predicate": {
+        "kind": "binary",
+        "type": {
+          "scalar": "boolean",
+          "nullable": false
+        },
+        "operation": "and",
+        "left": {
+          "kind": "literal",
+          "type": {
+            "scalar": "boolean",
+            "nullable": false
+          },
+          "value": false
+        },
+        "right": {
+          "kind": "exists",
+          "type": {
+            "scalar": "boolean",
+            "nullable": false
+          },
+          "query": "n1"
+        }
+      },
+      "output_schema": [
+        {
+          "id": "f_main",
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    }
+  ]
+}

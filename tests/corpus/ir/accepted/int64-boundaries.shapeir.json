@@ -1,0 +1,84 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n1",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "unit_rows",
+      "output_schema": [],
+      "collection": "bag"
+    },
+    {
+      "id": "n1",
+      "kind": "project",
+      "input": "n0",
+      "entries": [
+        {
+          "kind": "compute",
+          "output": "f_min",
+          "expression": {
+            "kind": "literal",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "value": "-9223372036854775808"
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "f_max",
+          "expression": {
+            "kind": "literal",
+            "type": {
+              "scalar": "int64",
+              "nullable": false
+            },
+            "value": "9223372036854775807"
+          }
+        },
+        {
+          "kind": "compute",
+          "output": "f_null",
+          "expression": {
+            "kind": "literal",
+            "type": {
+              "scalar": "boolean",
+              "nullable": true
+            },
+            "value": null
+          }
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "f_min",
+          "name": "minimum",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "f_max",
+          "name": "maximum",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "id": "f_null",
+          "name": "unknown_flag",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        }
+      ],
+      "collection": "bag"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "kind": "set",
+      "left": "n0",
+      "right": "n0",
+      "operation": "union",
+      "quantifier": "all",
+      "output_schema": [
+        {
+          "id": "f_result",
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    },
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "rows",
+      "output_schema": [
+        {
+          "id": "f_input",
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ],
+      "collection": "bag"
+    }
+  ]
+}

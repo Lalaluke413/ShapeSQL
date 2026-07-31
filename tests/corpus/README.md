@@ -20,6 +20,7 @@ An erroneous case records one of these phases:
 - `syntactic`;
 - `binding`;
 - `typing`;
+- `interchange`;
 - `shape-ir-validation`; or
 - `evaluation`.
 
@@ -40,5 +41,7 @@ The initial cases establish that:
 - `SELECT DISTINCT` ordering uses only result fields and does not introduce an
   ordering-only partitioned or ranking invocation, and row bounds require an
   ordering complete over result values; and
+- direct Shape IR documents distinguish valid interchange, interchange
+  decoding failures, and decoded graph-validation failures; and
 - representative program, query, expression, and window forms have the
   syntactic outcomes required by the grammar.

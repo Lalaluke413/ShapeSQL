@@ -46,7 +46,9 @@ implementation concerns outside the specification.
 See [Shape IR](docs/specification/09-shape-ir.md) for the portable logical
 graph and its boundary with a future physical execution representation. See
 [Source-to-IR lowering](docs/specification/10-source-to-ir-lowering.md) for
-the reference translation from typed ShapeSQL into that graph.
+the reference translation from typed ShapeSQL into that graph. See
+[Shape IR interchange](docs/specification/11-shape-ir-interchange.md) for its
+strict JSON encoding.
 
 ## Draft v0.1 scope
 
@@ -99,14 +101,15 @@ The project currently defines:
 1. the exact ShapeSQL language subset and observable query behavior;
 2. the lexical structure, grammar, and binding rules of ShapeSQL source;
 3. its type rules, null semantics, and multiplicity semantics;
-4. the typed relational Shape IR; and
-5. the reference source-to-IR lowering; and
-6. an initial corpus of accepted and rejected front-end cases.
+4. the typed relational Shape IR;
+5. the reference source-to-IR lowering;
+6. the Shape IR JSON interchange format; and
+7. an initial corpus of accepted and rejected source and direct IR cases.
 
 The reference implementation currently includes a handwritten lexer and
 recursive-descent parser for the complete ShapeSQL 0.1 grammar. The binder,
-type checker, source-to-IR lowerer, direct IR fixtures, and evaluation cases
-remain to be implemented.
+type checker, source-to-IR lowerer, interchange decoder, Shape IR validator,
+and evaluator remain to be implemented.
 
 ## License
 

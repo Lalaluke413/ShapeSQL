@@ -41,18 +41,13 @@ non-normative provides context only.
     translation of bound, typed ShapeSQL into Shape IR, including stage
     extraction, field re-identification, hidden ordering values, and
     demand-preserving nested-query handling.
+12. [Shape IR interchange](11-shape-ir-interchange.md) defines the strict JSON
+    encoding of Shape IR, identifier and literal representations, closed
+    object mappings, versioning, decoding errors, and direct IR fixtures.
 
-The initial [conformance corpus](../../tests/corpus/README.md) contains
-machine-readable front-end cases. It will grow alongside the normative
-documents.
-
-## Planned documents
-
-The following document should be added as the implementation becomes
-concrete:
-
-- **Shape IR interchange** — a stable encoding and direct IR conformance
-  fixtures.
+The [conformance corpus](../../tests/corpus/README.md) contains
+machine-readable source and direct Shape IR cases. It will continue to grow
+alongside the reference implementation.
 
 ## Specification boundary
 

@@ -1,0 +1,34 @@
+{
+  "interchange_version": "0.1",
+  "shape_ir_version": "0.1",
+  "root": "n0",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "input",
+      "binding": "rows",
+      "output_schema": [
+        {
+          "id": "f0",
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          },
+          "metadata": {
+            "example.label": "input value"
+          }
+        }
+      ],
+      "collection": "bag",
+      "metadata": {
+        "example.source": {
+          "line": 1
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "example.fixture_revision": 1
+  }
+}

@@ -158,9 +158,12 @@ because that node produces exactly one row.
 
 `filter`, `order`, `slice`, and `forget_order` preserve their input value keys.
 A `project` preserves an input value key when it keeps every field in that key.
-Other value-key inference is optional in Shape IR 0.1. An implementation MUST
-NOT rely on an inferred value key unless it can establish the defining
-property above for every valid input.
+These rules define the value keys available for portable graph validation.
+An implementation MAY infer other sound value keys for optimization, but
+whether a `row_number` or `slice` node is valid MUST NOT depend on inference
+beyond the rules in this section. This ensures that every conforming validator
+accepts the same portable graphs without catalog constraints or
+producer-specific proof metadata.
 
 Value keys are used only to prove that `row_number` and `slice` cannot choose
 among rows having distinguishable values. They do not imply a catalog
@@ -724,8 +727,11 @@ Every portable graph MUST identify its Shape IR version. A consumer MUST reject
 an unknown node, expression, scalar type, or semantic property in portable
 mode rather than silently reinterpret it.
 
-Shape IR 0.1 defines an abstract data model, not a textual or binary
-serialization. An implementation may expose the model through native data
-structures while claiming semantic conformance. A future interchange
-specification will define stable encoding, identifier representation, and
-direct Shape IR conformance fixtures.
+Shape IR 0.1 defines the abstract data model independently of any in-memory
+representation. An implementation may expose that model through native data
+structures while claiming semantic conformance.
+
+[Shape IR interchange](11-shape-ir-interchange.md) defines the stable JSON
+encoding, identifier and literal representations, decoding rules, and direct
+Shape IR conformance fixtures. Supporting the abstract graph through a native
+API does not by itself imply interchange conformance.

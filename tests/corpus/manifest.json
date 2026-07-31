@@ -380,6 +380,104 @@
         "outcome": "error",
         "phase": "typing"
       }
+    },
+    {
+      "id": "ir-minimal-input",
+      "ir": "ir/accepted/minimal-input.shapeir.json",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "ir-int64-boundaries",
+      "ir": "ir/accepted/int64-boundaries.shapeir.json",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "ir-demand-subquery",
+      "ir": "ir/accepted/demand-subquery.shapeir.json",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "ir-forward-shared-subgraph",
+      "ir": "ir/accepted/forward-shared-subgraph.shapeir.json",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "ir-scalar-expression-forms",
+      "ir": "ir/accepted/scalar-expression-forms.shapeir.json",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "ir-relational-node-forms",
+      "ir": "ir/accepted/relational-node-forms.shapeir.json",
+      "expect": {
+        "outcome": "accepted"
+      }
+    },
+    {
+      "id": "ir-duplicate-member",
+      "ir": "ir/rejected/duplicate-member.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "interchange"
+      }
+    },
+    {
+      "id": "ir-unknown-semantic-member",
+      "ir": "ir/rejected/unknown-semantic-member.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "interchange"
+      }
+    },
+    {
+      "id": "ir-int64-json-number",
+      "ir": "ir/rejected/int64-json-number.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "interchange"
+      }
+    },
+    {
+      "id": "ir-unsupported-version",
+      "ir": "ir/rejected/unsupported-version.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "interchange"
+      }
+    },
+    {
+      "id": "ir-negative-slice-offset",
+      "ir": "ir/rejected/negative-slice-offset.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "shape-ir-validation"
+      }
+    },
+    {
+      "id": "ir-unreachable-node",
+      "ir": "ir/rejected/unreachable-node.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "shape-ir-validation"
+      }
+    },
+    {
+      "id": "ir-incorrect-output-schema",
+      "ir": "ir/rejected/incorrect-output-schema.shapeir.json",
+      "expect": {
+        "outcome": "error",
+        "phase": "shape-ir-validation"
+      }
     }
   ]
 }

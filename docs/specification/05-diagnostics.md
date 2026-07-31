@@ -16,16 +16,24 @@ ShapeSQL defines the following phases:
 | `syntactic` | Source | Tokens do not match the grammar. |
 | `binding` | Source | Invalid name resolution, visibility, or CTE dependency. |
 | `typing` | Source | Invalid type, nullability, or arity. |
+| `interchange` | Interchange document | Invalid JSON or record mapping. |
 | `shape-ir-validation` | Shape IR | Invalid graph invariant. |
 | `evaluation` | Shape IR and inputs | Required evaluation failure. |
 
 Lexical, syntactic, binding, and typing errors are collectively **static
 errors**. They prevent a source program from producing valid Shape IR.
 
-Shape IR validation is a separate interface boundary. A conforming front end
-MUST NOT produce invalid Shape IR from any source program. A Shape IR
-validation corpus case therefore tests a Shape IR consumer directly; it does
-not describe a permitted user error from otherwise valid ShapeSQL source.
+Interchange decoding and Shape IR validation are separate interface
+boundaries. A purported interchange document that cannot reconstruct an
+abstract graph has an `interchange` error. A reconstructed graph that violates
+a graph invariant has a `shape-ir-validation` error. The exact boundary is
+defined by
+[Shape IR interchange](11-shape-ir-interchange.md#11-mapping-and-graph-validation).
+
+A conforming front end MUST NOT produce invalid Shape IR from any source
+program. A Shape IR validation corpus case therefore tests a Shape IR consumer
+directly; it does not describe a permitted user error from otherwise valid
+ShapeSQL source.
 
 Evaluation is also distinct from static rejection. Division by zero and
 integer overflow, for example, remain evaluation errors even when an
@@ -41,6 +49,11 @@ a syntactic concern. Resolving relation, field, alias, and common-table
 expression names according to [Binding](07-binding.md) is a binding concern.
 Applying operator signatures and other static semantic rules to a bound
 program is a typing concern.
+
+JSON decoding, duplicate object members, and mapping recognized interchange
+records are interchange concerns. Reference resolution, acyclicity, schema
+derivation, and expression descriptor verification are Shape IR validation
+concerns.
 
 Whether a subquery reference is correlated depends on which field the
 reference resolves to. A prohibited correlated reference in `EXISTS`, `IN`, or
