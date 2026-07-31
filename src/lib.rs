@@ -1,6 +1,7 @@
 //! Reference implementation of the ShapeSQL language.
 
 pub mod ast;
+mod bind;
 mod catalog;
 mod frontend;
 pub mod hir;
@@ -10,6 +11,7 @@ mod name;
 mod parser;
 mod types;
 
+pub use bind::{BindError, BindErrorKind, bind};
 pub use catalog::{Catalog, CatalogField, CatalogRelation, RelationBinding};
 pub use frontend::{ParsedProgram, parse_owned};
 pub use identity::{CteId, FieldId, RelationOccurrenceId};
