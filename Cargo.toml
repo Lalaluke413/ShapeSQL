@@ -6,3 +6,5 @@ license = "GPL-3.0-only"
 description = "Reference implementation of the ShapeSQL language"
 
 [dependencies]
+serde = "1.0"
+serde_json = { version = "1.0", features = ["arbitrary_precision"] }

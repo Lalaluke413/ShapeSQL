@@ -6,6 +6,7 @@ mod catalog;
 mod frontend;
 pub mod hir;
 mod identity;
+pub mod interchange;
 mod lexer;
 mod lower;
 mod name;
