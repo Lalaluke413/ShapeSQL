@@ -1,5 +1,7 @@
 use crate::Span;
 
+pub use crate::types::ScalarType;
+
 /// A complete ShapeSQL source program.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Program {
@@ -320,13 +322,6 @@ pub struct WhenClause {
     pub condition: Expression,
     pub result: Expression,
     pub span: Span,
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ScalarType {
-    Boolean,
-    Int64,
-    Text,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

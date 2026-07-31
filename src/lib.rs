@@ -1,8 +1,18 @@
 //! Reference implementation of the ShapeSQL language.
 
 pub mod ast;
+mod catalog;
+mod frontend;
+mod identity;
 mod lexer;
+mod name;
 mod parser;
+mod types;
 
+pub use catalog::{Catalog, CatalogField, CatalogRelation, RelationBinding};
+pub use frontend::{ParsedProgram, parse_owned};
+pub use identity::{CteId, FieldId, RelationOccurrenceId};
 pub use lexer::{LexError, LexErrorKind, Span, Token, TokenKind, lex};
+pub use name::Name;
 pub use parser::{ParseError, SyntaxError, parse};
+pub use types::{ScalarType, TypeDescriptor};

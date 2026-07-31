@@ -4,10 +4,10 @@ use crate::ast::{
     AggregateArgument, AggregateFunction, AggregateWindow, BinaryOperator, CommonTableExpression,
     Expression, Identifier, IdentifierKind, IntegerLiteral, Join, JoinKind, JoinedTable, Literal,
     NullPlacement, OrderDirection, OrderItem, Program, QueryBody, QueryExpression, RankingFunction,
-    RowBound, ScalarType, SelectItem, SelectQuery, SetOperator, TablePrimary, TextLiteral,
-    UnaryOperator, WhenClause,
+    RowBound, SelectItem, SelectQuery, SetOperator, TablePrimary, TextLiteral, UnaryOperator,
+    WhenClause,
 };
-use crate::{LexError, Span, Token, TokenKind, lex};
+use crate::{LexError, ScalarType, Span, Token, TokenKind, lex};
 
 /// A lexical or syntactic failure encountered while parsing a source program.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
