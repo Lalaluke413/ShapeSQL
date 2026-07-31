@@ -9,6 +9,7 @@ mod identity;
 mod lexer;
 mod name;
 mod parser;
+pub mod shape_ir;
 mod typecheck;
 mod types;
 
