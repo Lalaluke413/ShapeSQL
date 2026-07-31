@@ -3,6 +3,7 @@
 pub mod ast;
 mod catalog;
 mod frontend;
+pub mod hir;
 mod identity;
 mod lexer;
 mod name;
