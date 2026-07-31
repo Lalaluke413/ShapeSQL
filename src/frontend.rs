@@ -3,7 +3,8 @@
 use std::sync::Arc;
 
 use crate::ast::{Identifier, IdentifierKind, IntegerLiteral, Program, TextLiteral};
-use crate::{Name, ParseError, parse};
+use crate::shape_ir::Graph;
+use crate::{BindError, Catalog, Name, ParseError, TypeError, bind, lower, parse, type_check};
 
 /// A syntax tree paired inseparably with the UTF-8 source that its spans index.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -58,4 +59,59 @@ pub fn parse_owned(source: &[u8]) -> Result<ParsedProgram, ParseError> {
         .into();
 
     Ok(ParsedProgram { source, syntax })
+}
+
+/// A successfully parsed program that failed semantic analysis.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum AnalysisError {
+    Binding(BindError),
+    Typing(TypeError),
+}
+
+impl std::fmt::Display for AnalysisError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Binding(error) => std::fmt::Display::fmt(error, formatter),
+            Self::Typing(error) => std::fmt::Display::fmt(error, formatter),
+        }
+    }
+}
+
+impl std::error::Error for AnalysisError {}
+
+/// A lexical, syntactic, binding, or typing failure during compilation.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum CompileError {
+    Parsing(ParseError),
+    Binding(BindError),
+    Typing(TypeError),
+}
+
+impl std::fmt::Display for CompileError {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Parsing(error) => std::fmt::Display::fmt(error, formatter),
+            Self::Binding(error) => std::fmt::Display::fmt(error, formatter),
+            Self::Typing(error) => std::fmt::Display::fmt(error, formatter),
+        }
+    }
+}
+
+impl std::error::Error for CompileError {}
+
+/// Runs the separate binding and type-checking phases.
+pub fn analyze(
+    parsed: &ParsedProgram,
+    catalog: &Catalog,
+) -> Result<crate::hir::TypedProgram, AnalysisError> {
+    let bound = bind(parsed, catalog).map_err(AnalysisError::Binding)?;
+    type_check(bound).map_err(AnalysisError::Typing)
+}
+
+/// Compiles one ShapeSQL source program into valid Shape IR 0.1.
+pub fn compile(source: &[u8], catalog: &Catalog) -> Result<Graph, CompileError> {
+    let parsed = parse_owned(source).map_err(CompileError::Parsing)?;
+    let bound = bind(&parsed, catalog).map_err(CompileError::Binding)?;
+    let typed = type_check(bound).map_err(CompileError::Typing)?;
+    Ok(lower(typed))
 }
