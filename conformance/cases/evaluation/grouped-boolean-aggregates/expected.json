@@ -1,0 +1,42 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "group_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "all_flags",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        }
+      },
+      {
+        "name": "any_flag",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1",
+        false,
+        true
+      ],
+      [
+        "2",
+        null,
+        null
+      ]
+    ]
+  }
+}

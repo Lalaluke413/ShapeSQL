@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "snapshot.schema.json",
+  "title": "ShapeSQL conformance snapshot fixture 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "relations"],
+  "properties": {
+    "format_version": {
+      "const": "0.1"
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    }
+  },
+  "$defs": {
+    "cell": {
+      "type": ["null", "boolean", "string"]
+    },
+    "row": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cell"
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding", "rows"],
+      "properties": {
+        "binding": {
+          "type": "string"
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/row"
+          }
+        }
+      }
+    }
+  }
+}

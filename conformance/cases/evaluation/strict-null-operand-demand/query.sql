@@ -1,0 +1,2 @@
+SELECT CAST(NULL AS INT64) + (1 / 0) AS value
+FROM unit;

@@ -1,0 +1,42 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "ordered",
+    "schema": [
+      {
+        "name": "item_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "flag",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        }
+      },
+      {
+        "name": "outer_group",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1",
+        true,
+        "1"
+      ],
+      [
+        "2",
+        false,
+        "2"
+      ]
+    ]
+  }
+}

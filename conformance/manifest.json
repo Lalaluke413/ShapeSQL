@@ -1,0 +1,895 @@
+{
+  "manifest_format_version": "0.1",
+  "language": {
+    "name": "ShapeSQL",
+    "version": "0.1"
+  },
+  "fixture_format_version": "0.1",
+  "adapter_protocol_version": "0.1",
+  "cases": [
+    {
+      "id": "binding-ambiguous-column",
+      "source": "cases/binding/ambiguous-column/query.sql",
+      "catalog": "cases/binding/ambiguous-column/catalog.json",
+      "snapshot": "cases/binding/ambiguous-column/snapshot.json",
+      "expected": "cases/binding/ambiguous-column/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-ambiguous-order-alias",
+      "source": "cases/binding/ambiguous-order-alias/query.sql",
+      "catalog": "cases/binding/ambiguous-order-alias/catalog.json",
+      "snapshot": "cases/binding/ambiguous-order-alias/snapshot.json",
+      "expected": "cases/binding/ambiguous-order-alias/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-correlated-exists",
+      "source": "cases/binding/correlated-exists/query.sql",
+      "catalog": "cases/binding/correlated-exists/catalog.json",
+      "snapshot": "cases/binding/correlated-exists/snapshot.json",
+      "expected": "cases/binding/correlated-exists/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-correlated-in",
+      "source": "cases/binding/correlated-in/query.sql",
+      "catalog": "cases/binding/correlated-in/catalog.json",
+      "snapshot": "cases/binding/correlated-in/snapshot.json",
+      "expected": "cases/binding/correlated-in/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-cte-cycle",
+      "source": "cases/binding/cte-cycle/query.sql",
+      "catalog": "cases/binding/cte-cycle/catalog.json",
+      "snapshot": "cases/binding/cte-cycle/snapshot.json",
+      "expected": "cases/binding/cte-cycle/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-distinct-order-by-source",
+      "source": "cases/binding/distinct-order-by-source/query.sql",
+      "catalog": "cases/binding/distinct-order-by-source/catalog.json",
+      "snapshot": "cases/binding/distinct-order-by-source/snapshot.json",
+      "expected": "cases/binding/distinct-order-by-source/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-duplicate-source-qualifier",
+      "source": "cases/binding/duplicate-source-qualifier/query.sql",
+      "catalog": "cases/binding/duplicate-source-qualifier/catalog.json",
+      "snapshot": "cases/binding/duplicate-source-qualifier/snapshot.json",
+      "expected": "cases/binding/duplicate-source-qualifier/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-hidden-source-qualifier",
+      "source": "cases/binding/hidden-source-qualifier/query.sql",
+      "catalog": "cases/binding/hidden-source-qualifier/catalog.json",
+      "snapshot": "cases/binding/hidden-source-qualifier/snapshot.json",
+      "expected": "cases/binding/hidden-source-qualifier/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-order-by-ordinal-out-of-range",
+      "source": "cases/binding/order-by-ordinal-out-of-range/query.sql",
+      "catalog": "cases/binding/order-by-ordinal-out-of-range/catalog.json",
+      "snapshot": "cases/binding/order-by-ordinal-out-of-range/snapshot.json",
+      "expected": "cases/binding/order-by-ordinal-out-of-range/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-select-alias-in-where",
+      "source": "cases/binding/select-alias-in-where/query.sql",
+      "catalog": "cases/binding/select-alias-in-where/catalog.json",
+      "snapshot": "cases/binding/select-alias-in-where/snapshot.json",
+      "expected": "cases/binding/select-alias-in-where/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-unknown-relation",
+      "source": "cases/binding/unknown-relation/query.sql",
+      "catalog": "cases/binding/unknown-relation/catalog.json",
+      "snapshot": "cases/binding/unknown-relation/snapshot.json",
+      "expected": "cases/binding/unknown-relation/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "binding-unknown-wildcard-qualifier",
+      "source": "cases/binding/unknown-wildcard-qualifier/query.sql",
+      "catalog": "cases/binding/unknown-wildcard-qualifier/catalog.json",
+      "snapshot": "cases/binding/unknown-wildcard-qualifier/snapshot.json",
+      "expected": "cases/binding/unknown-wildcard-qualifier/expected.json",
+      "tags": [
+        "binding",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "evaluation-binding-alias-wildcard",
+      "source": "cases/evaluation/binding-alias-wildcard/query.sql",
+      "catalog": "cases/evaluation/binding-alias-wildcard/catalog.json",
+      "snapshot": "cases/evaluation/binding-alias-wildcard/snapshot.json",
+      "expected": "cases/evaluation/binding-alias-wildcard/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "binding",
+        "join",
+        "wildcard",
+        "ordering"
+      ]
+    },
+    {
+      "id": "evaluation-boolean-aggregate-error-demand",
+      "source": "cases/evaluation/boolean-aggregate-error-demand/query.sql",
+      "catalog": "cases/evaluation/boolean-aggregate-error-demand/catalog.json",
+      "snapshot": "cases/evaluation/boolean-aggregate-error-demand/snapshot.json",
+      "expected": "cases/evaluation/boolean-aggregate-error-demand/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "aggregate",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "evaluation-cast-boundaries",
+      "source": "cases/evaluation/cast-boundaries/query.sql",
+      "catalog": "cases/evaluation/cast-boundaries/catalog.json",
+      "snapshot": "cases/evaluation/cast-boundaries/snapshot.json",
+      "expected": "cases/evaluation/cast-boundaries/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "arithmetic",
+        "cast",
+        "boundary"
+      ]
+    },
+    {
+      "id": "evaluation-conditional-demand",
+      "source": "cases/evaluation/conditional-demand/query.sql",
+      "catalog": "cases/evaluation/conditional-demand/catalog.json",
+      "snapshot": "cases/evaluation/conditional-demand/snapshot.json",
+      "expected": "cases/evaluation/conditional-demand/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "conditional",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "evaluation-distinct-null-and-duplicates",
+      "source": "cases/evaluation/distinct-null-and-duplicates/query.sql",
+      "catalog": "cases/evaluation/distinct-null-and-duplicates/catalog.json",
+      "snapshot": "cases/evaluation/distinct-null-and-duplicates/snapshot.json",
+      "expected": "cases/evaluation/distinct-null-and-duplicates/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "distinct",
+        "null",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "evaluation-empty-global-aggregate",
+      "source": "cases/evaluation/empty-global-aggregate/query.sql",
+      "catalog": "cases/evaluation/empty-global-aggregate/catalog.json",
+      "snapshot": "cases/evaluation/empty-global-aggregate/snapshot.json",
+      "expected": "cases/evaluation/empty-global-aggregate/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "aggregate",
+        "empty",
+        "null"
+      ]
+    },
+    {
+      "id": "evaluation-except-all-multiplicity",
+      "source": "cases/evaluation/except-all-multiplicity/query.sql",
+      "catalog": "cases/evaluation/except-all-multiplicity/catalog.json",
+      "snapshot": "cases/evaluation/except-all-multiplicity/snapshot.json",
+      "expected": "cases/evaluation/except-all-multiplicity/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "set-operation",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "evaluation-except-distinct-multiplicity",
+      "source": "cases/evaluation/except-distinct-multiplicity/query.sql",
+      "catalog": "cases/evaluation/except-distinct-multiplicity/catalog.json",
+      "snapshot": "cases/evaluation/except-distinct-multiplicity/snapshot.json",
+      "expected": "cases/evaluation/except-distinct-multiplicity/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "set-operation",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "evaluation-exists-complete-evaluation",
+      "source": "cases/evaluation/exists-complete-evaluation/query.sql",
+      "catalog": "cases/evaluation/exists-complete-evaluation/catalog.json",
+      "snapshot": "cases/evaluation/exists-complete-evaluation/snapshot.json",
+      "expected": "cases/evaluation/exists-complete-evaluation/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "exists",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "evaluation-forward-cte-reference",
+      "source": "cases/evaluation/forward-cte-reference/query.sql",
+      "catalog": "cases/evaluation/forward-cte-reference/catalog.json",
+      "snapshot": "cases/evaluation/forward-cte-reference/snapshot.json",
+      "expected": "cases/evaluation/forward-cte-reference/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "cte"
+      ]
+    },
+    {
+      "id": "evaluation-full-outer-join-multiplicity",
+      "source": "cases/evaluation/full-outer-join-multiplicity/query.sql",
+      "catalog": "cases/evaluation/full-outer-join-multiplicity/catalog.json",
+      "snapshot": "cases/evaluation/full-outer-join-multiplicity/snapshot.json",
+      "expected": "cases/evaluation/full-outer-join-multiplicity/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "join",
+        "multiplicity",
+        "null"
+      ]
+    },
+    {
+      "id": "evaluation-grammar-core",
+      "source": "cases/evaluation/grammar-core/query.sql",
+      "catalog": "cases/evaluation/grammar-core/catalog.json",
+      "snapshot": "cases/evaluation/grammar-core/snapshot.json",
+      "expected": "cases/evaluation/grammar-core/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "cte",
+        "aggregate",
+        "join",
+        "ordering",
+        "slice"
+      ]
+    },
+    {
+      "id": "evaluation-grouped-aggregate-null-semantics",
+      "source": "cases/evaluation/grouped-aggregate-null-semantics/query.sql",
+      "catalog": "cases/evaluation/grouped-aggregate-null-semantics/catalog.json",
+      "snapshot": "cases/evaluation/grouped-aggregate-null-semantics/snapshot.json",
+      "expected": "cases/evaluation/grouped-aggregate-null-semantics/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "aggregate",
+        "grouping",
+        "null"
+      ]
+    },
+    {
+      "id": "evaluation-grouped-boolean-aggregates",
+      "source": "cases/evaluation/grouped-boolean-aggregates/query.sql",
+      "catalog": "cases/evaluation/grouped-boolean-aggregates/catalog.json",
+      "snapshot": "cases/evaluation/grouped-boolean-aggregates/snapshot.json",
+      "expected": "cases/evaluation/grouped-boolean-aggregates/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "aggregate",
+        "null"
+      ]
+    },
+    {
+      "id": "evaluation-grouped-row-number",
+      "source": "cases/evaluation/grouped-row-number/query.sql",
+      "catalog": "cases/evaluation/grouped-row-number/catalog.json",
+      "snapshot": "cases/evaluation/grouped-row-number/snapshot.json",
+      "expected": "cases/evaluation/grouped-row-number/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "aggregate",
+        "ranking"
+      ]
+    },
+    {
+      "id": "evaluation-in-null-semantics",
+      "source": "cases/evaluation/in-null-semantics/query.sql",
+      "catalog": "cases/evaluation/in-null-semantics/catalog.json",
+      "snapshot": "cases/evaluation/in-null-semantics/snapshot.json",
+      "expected": "cases/evaluation/in-null-semantics/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "in",
+        "null"
+      ]
+    },
+    {
+      "id": "evaluation-integer-overflow",
+      "source": "cases/evaluation/integer-overflow/query.sql",
+      "catalog": "cases/evaluation/integer-overflow/catalog.json",
+      "snapshot": "cases/evaluation/integer-overflow/snapshot.json",
+      "expected": "cases/evaluation/integer-overflow/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "arithmetic",
+        "overflow"
+      ]
+    },
+    {
+      "id": "evaluation-intersect-all-multiplicity",
+      "source": "cases/evaluation/intersect-all-multiplicity/query.sql",
+      "catalog": "cases/evaluation/intersect-all-multiplicity/catalog.json",
+      "snapshot": "cases/evaluation/intersect-all-multiplicity/snapshot.json",
+      "expected": "cases/evaluation/intersect-all-multiplicity/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "set-operation",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "evaluation-invalid-text-cast",
+      "source": "cases/evaluation/invalid-text-cast/query.sql",
+      "catalog": "cases/evaluation/invalid-text-cast/catalog.json",
+      "snapshot": "cases/evaluation/invalid-text-cast/snapshot.json",
+      "expected": "cases/evaluation/invalid-text-cast/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "cast"
+      ]
+    },
+    {
+      "id": "evaluation-null-placement-and-slice",
+      "source": "cases/evaluation/null-placement-and-slice/query.sql",
+      "catalog": "cases/evaluation/null-placement-and-slice/catalog.json",
+      "snapshot": "cases/evaluation/null-placement-and-slice/snapshot.json",
+      "expected": "cases/evaluation/null-placement-and-slice/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "ordering",
+        "null",
+        "slice"
+      ]
+    },
+    {
+      "id": "evaluation-order-by-ordinal",
+      "source": "cases/evaluation/order-by-ordinal/query.sql",
+      "catalog": "cases/evaluation/order-by-ordinal/catalog.json",
+      "snapshot": "cases/evaluation/order-by-ordinal/snapshot.json",
+      "expected": "cases/evaluation/order-by-ordinal/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "ordering"
+      ]
+    },
+    {
+      "id": "evaluation-ordering-later-key-error",
+      "source": "cases/evaluation/ordering-later-key-error/query.sql",
+      "catalog": "cases/evaluation/ordering-later-key-error/catalog.json",
+      "snapshot": "cases/evaluation/ordering-later-key-error/snapshot.json",
+      "expected": "cases/evaluation/ordering-later-key-error/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "ordering",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "evaluation-partitioned-boolean-aggregates",
+      "source": "cases/evaluation/partitioned-boolean-aggregates/query.sql",
+      "catalog": "cases/evaluation/partitioned-boolean-aggregates/catalog.json",
+      "snapshot": "cases/evaluation/partitioned-boolean-aggregates/snapshot.json",
+      "expected": "cases/evaluation/partitioned-boolean-aggregates/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "window",
+        "aggregate",
+        "null"
+      ]
+    },
+    {
+      "id": "evaluation-partitioned-ranking",
+      "source": "cases/evaluation/partitioned-ranking/query.sql",
+      "catalog": "cases/evaluation/partitioned-ranking/catalog.json",
+      "snapshot": "cases/evaluation/partitioned-ranking/snapshot.json",
+      "expected": "cases/evaluation/partitioned-ranking/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "window",
+        "aggregate",
+        "ranking"
+      ]
+    },
+    {
+      "id": "evaluation-set-input-error-demand",
+      "source": "cases/evaluation/set-input-error-demand/query.sql",
+      "catalog": "cases/evaluation/set-input-error-demand/catalog.json",
+      "snapshot": "cases/evaluation/set-input-error-demand/snapshot.json",
+      "expected": "cases/evaluation/set-input-error-demand/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "set-operation",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "evaluation-set-precedence",
+      "source": "cases/evaluation/set-precedence/query.sql",
+      "catalog": "cases/evaluation/set-precedence/catalog.json",
+      "snapshot": "cases/evaluation/set-precedence/snapshot.json",
+      "expected": "cases/evaluation/set-precedence/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "set-operation",
+        "ordering"
+      ]
+    },
+    {
+      "id": "evaluation-strict-null-operand-demand",
+      "source": "cases/evaluation/strict-null-operand-demand/query.sql",
+      "catalog": "cases/evaluation/strict-null-operand-demand/catalog.json",
+      "snapshot": "cases/evaluation/strict-null-operand-demand/snapshot.json",
+      "expected": "cases/evaluation/strict-null-operand-demand/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "expression",
+        "null",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "evaluation-sum-exact-cancellation",
+      "source": "cases/evaluation/sum-exact-cancellation/query.sql",
+      "catalog": "cases/evaluation/sum-exact-cancellation/catalog.json",
+      "snapshot": "cases/evaluation/sum-exact-cancellation/snapshot.json",
+      "expected": "cases/evaluation/sum-exact-cancellation/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "aggregate",
+        "overflow",
+        "boundary"
+      ]
+    },
+    {
+      "id": "evaluation-sum-final-overflow",
+      "source": "cases/evaluation/sum-final-overflow/query.sql",
+      "catalog": "cases/evaluation/sum-final-overflow/catalog.json",
+      "snapshot": "cases/evaluation/sum-final-overflow/snapshot.json",
+      "expected": "cases/evaluation/sum-final-overflow/expected.json",
+      "tags": [
+        "evaluation",
+        "error",
+        "aggregate",
+        "overflow"
+      ]
+    },
+    {
+      "id": "evaluation-typed-expressions",
+      "source": "cases/evaluation/typed-expressions/query.sql",
+      "catalog": "cases/evaluation/typed-expressions/catalog.json",
+      "snapshot": "cases/evaluation/typed-expressions/snapshot.json",
+      "expected": "cases/evaluation/typed-expressions/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "expression",
+        "cast",
+        "null",
+        "window"
+      ]
+    },
+    {
+      "id": "evaluation-uncorrelated-exists",
+      "source": "cases/evaluation/uncorrelated-exists/query.sql",
+      "catalog": "cases/evaluation/uncorrelated-exists/catalog.json",
+      "snapshot": "cases/evaluation/uncorrelated-exists/snapshot.json",
+      "expected": "cases/evaluation/uncorrelated-exists/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "exists"
+      ]
+    },
+    {
+      "id": "evaluation-uncorrelated-in",
+      "source": "cases/evaluation/uncorrelated-in/query.sql",
+      "catalog": "cases/evaluation/uncorrelated-in/catalog.json",
+      "snapshot": "cases/evaluation/uncorrelated-in/snapshot.json",
+      "expected": "cases/evaluation/uncorrelated-in/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "in"
+      ]
+    },
+    {
+      "id": "evaluation-union-all-multiplicity",
+      "source": "cases/evaluation/union-all-multiplicity/query.sql",
+      "catalog": "cases/evaluation/union-all-multiplicity/catalog.json",
+      "snapshot": "cases/evaluation/union-all-multiplicity/snapshot.json",
+      "expected": "cases/evaluation/union-all-multiplicity/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "set-operation",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "evaluation-unreferenced-cte-not-evaluated",
+      "source": "cases/evaluation/unreferenced-cte-not-evaluated/query.sql",
+      "catalog": "cases/evaluation/unreferenced-cte-not-evaluated/catalog.json",
+      "snapshot": "cases/evaluation/unreferenced-cte-not-evaluated/snapshot.json",
+      "expected": "cases/evaluation/unreferenced-cte-not-evaluated/expected.json",
+      "tags": [
+        "evaluation",
+        "success",
+        "cte",
+        "error-demand"
+      ]
+    },
+    {
+      "id": "lexical-unrecognized-character",
+      "source": "cases/lexical/unrecognized-character/query.sql",
+      "catalog": "cases/lexical/unrecognized-character/catalog.json",
+      "snapshot": "cases/lexical/unrecognized-character/snapshot.json",
+      "expected": "cases/lexical/unrecognized-character/expected.json",
+      "tags": [
+        "lexical",
+        "error"
+      ]
+    },
+    {
+      "id": "lexical-unterminated-text-literal",
+      "source": "cases/lexical/unterminated-text-literal/query.sql",
+      "catalog": "cases/lexical/unterminated-text-literal/catalog.json",
+      "snapshot": "cases/lexical/unterminated-text-literal/snapshot.json",
+      "expected": "cases/lexical/unterminated-text-literal/expected.json",
+      "tags": [
+        "lexical",
+        "error"
+      ]
+    },
+    {
+      "id": "syntactic-derived-source-without-alias",
+      "source": "cases/syntactic/derived-source-without-alias/query.sql",
+      "catalog": "cases/syntactic/derived-source-without-alias/catalog.json",
+      "snapshot": "cases/syntactic/derived-source-without-alias/snapshot.json",
+      "expected": "cases/syntactic/derived-source-without-alias/expected.json",
+      "tags": [
+        "syntactic",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "syntactic-empty-in-list",
+      "source": "cases/syntactic/empty-in-list/query.sql",
+      "catalog": "cases/syntactic/empty-in-list/catalog.json",
+      "snapshot": "cases/syntactic/empty-in-list/snapshot.json",
+      "expected": "cases/syntactic/empty-in-list/expected.json",
+      "tags": [
+        "syntactic",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "syntactic-limit-without-order",
+      "source": "cases/syntactic/limit-without-order/query.sql",
+      "catalog": "cases/syntactic/limit-without-order/catalog.json",
+      "snapshot": "cases/syntactic/limit-without-order/snapshot.json",
+      "expected": "cases/syntactic/limit-without-order/expected.json",
+      "tags": [
+        "syntactic",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "syntactic-multiple-programs",
+      "source": "cases/syntactic/multiple-programs/query.sql",
+      "catalog": "cases/syntactic/multiple-programs/catalog.json",
+      "snapshot": "cases/syntactic/multiple-programs/snapshot.json",
+      "expected": "cases/syntactic/multiple-programs/expected.json",
+      "tags": [
+        "syntactic",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "syntactic-select-without-from",
+      "source": "cases/syntactic/select-without-from/query.sql",
+      "catalog": "cases/syntactic/select-without-from/catalog.json",
+      "snapshot": "cases/syntactic/select-without-from/snapshot.json",
+      "expected": "cases/syntactic/select-without-from/expected.json",
+      "tags": [
+        "syntactic",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "syntactic-window-aggregate-order",
+      "source": "cases/syntactic/window-aggregate-order/query.sql",
+      "catalog": "cases/syntactic/window-aggregate-order/catalog.json",
+      "snapshot": "cases/syntactic/window-aggregate-order/snapshot.json",
+      "expected": "cases/syntactic/window-aggregate-order/expected.json",
+      "tags": [
+        "syntactic",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-aggregate-in-where",
+      "source": "cases/typing/type-aggregate-in-where/query.sql",
+      "catalog": "cases/typing/type-aggregate-in-where/catalog.json",
+      "snapshot": "cases/typing/type-aggregate-in-where/snapshot.json",
+      "expected": "cases/typing/type-aggregate-in-where/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-arithmetic-text",
+      "source": "cases/typing/type-arithmetic-text/query.sql",
+      "catalog": "cases/typing/type-arithmetic-text/catalog.json",
+      "snapshot": "cases/typing/type-arithmetic-text/snapshot.json",
+      "expected": "cases/typing/type-arithmetic-text/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-boolean-sum",
+      "source": "cases/typing/type-boolean-sum/query.sql",
+      "catalog": "cases/typing/type-boolean-sum/catalog.json",
+      "snapshot": "cases/typing/type-boolean-sum/snapshot.json",
+      "expected": "cases/typing/type-boolean-sum/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-in-query-arity",
+      "source": "cases/typing/type-in-query-arity/query.sql",
+      "catalog": "cases/typing/type-in-query-arity/catalog.json",
+      "snapshot": "cases/typing/type-in-query-arity/snapshot.json",
+      "expected": "cases/typing/type-in-query-arity/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-incompatible-case",
+      "source": "cases/typing/type-incompatible-case/query.sql",
+      "catalog": "cases/typing/type-incompatible-case/catalog.json",
+      "snapshot": "cases/typing/type-incompatible-case/snapshot.json",
+      "expected": "cases/typing/type-incompatible-case/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-incompatible-set-fields",
+      "source": "cases/typing/type-incompatible-set-fields/query.sql",
+      "catalog": "cases/typing/type-incompatible-set-fields/catalog.json",
+      "snapshot": "cases/typing/type-incompatible-set-fields/snapshot.json",
+      "expected": "cases/typing/type-incompatible-set-fields/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-incomplete-row-bound-order",
+      "source": "cases/typing/type-incomplete-row-bound-order/query.sql",
+      "catalog": "cases/typing/type-incomplete-row-bound-order/catalog.json",
+      "snapshot": "cases/typing/type-incomplete-row-bound-order/snapshot.json",
+      "expected": "cases/typing/type-incomplete-row-bound-order/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-incomplete-row-number-order",
+      "source": "cases/typing/type-incomplete-row-number-order/query.sql",
+      "catalog": "cases/typing/type-incomplete-row-number-order/catalog.json",
+      "snapshot": "cases/typing/type-incomplete-row-number-order/snapshot.json",
+      "expected": "cases/typing/type-incomplete-row-number-order/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-non-boolean-predicate",
+      "source": "cases/typing/type-non-boolean-predicate/query.sql",
+      "catalog": "cases/typing/type-non-boolean-predicate/catalog.json",
+      "snapshot": "cases/typing/type-non-boolean-predicate/snapshot.json",
+      "expected": "cases/typing/type-non-boolean-predicate/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-nonaggregate-having",
+      "source": "cases/typing/type-nonaggregate-having/query.sql",
+      "catalog": "cases/typing/type-nonaggregate-having/catalog.json",
+      "snapshot": "cases/typing/type-nonaggregate-having/snapshot.json",
+      "expected": "cases/typing/type-nonaggregate-having/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-nullable-order-without-placement",
+      "source": "cases/typing/type-nullable-order-without-placement/query.sql",
+      "catalog": "cases/typing/type-nullable-order-without-placement/catalog.json",
+      "snapshot": "cases/typing/type-nullable-order-without-placement/snapshot.json",
+      "expected": "cases/typing/type-nullable-order-without-placement/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-out-of-range-integer",
+      "source": "cases/typing/type-out-of-range-integer/query.sql",
+      "catalog": "cases/typing/type-out-of-range-integer/catalog.json",
+      "snapshot": "cases/typing/type-out-of-range-integer/snapshot.json",
+      "expected": "cases/typing/type-out-of-range-integer/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-unconstrained-null",
+      "source": "cases/typing/type-unconstrained-null/query.sql",
+      "catalog": "cases/typing/type-unconstrained-null/catalog.json",
+      "snapshot": "cases/typing/type-unconstrained-null/snapshot.json",
+      "expected": "cases/typing/type-unconstrained-null/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-ungrouped-column",
+      "source": "cases/typing/type-ungrouped-column/query.sql",
+      "catalog": "cases/typing/type-ungrouped-column/catalog.json",
+      "snapshot": "cases/typing/type-ungrouped-column/snapshot.json",
+      "expected": "cases/typing/type-ungrouped-column/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-unsupported-cast",
+      "source": "cases/typing/type-unsupported-cast/query.sql",
+      "catalog": "cases/typing/type-unsupported-cast/catalog.json",
+      "snapshot": "cases/typing/type-unsupported-cast/snapshot.json",
+      "expected": "cases/typing/type-unsupported-cast/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    },
+    {
+      "id": "typing-type-window-in-distinct-order",
+      "source": "cases/typing/type-window-in-distinct-order/query.sql",
+      "catalog": "cases/typing/type-window-in-distinct-order/catalog.json",
+      "snapshot": "cases/typing/type-window-in-distinct-order/snapshot.json",
+      "expected": "cases/typing/type-window-in-distinct-order/expected.json",
+      "tags": [
+        "typing",
+        "error",
+        "source-corpus"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "case_value",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "and_value",
+        "type": {
+          "scalar": "boolean",
+          "nullable": false
+        }
+      },
+      {
+        "name": "or_value",
+        "type": {
+          "scalar": "boolean",
+          "nullable": false
+        }
+      }
+    ],
+    "rows": [
+      [
+        "7",
+        false,
+        true
+      ]
+    ]
+  }
+}

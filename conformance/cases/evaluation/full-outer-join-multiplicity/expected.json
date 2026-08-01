@@ -1,0 +1,49 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "left_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": true
+        }
+      },
+      {
+        "name": "right_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": true
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1",
+        "1"
+      ],
+      [
+        "1",
+        "1"
+      ],
+      [
+        "1",
+        "1"
+      ],
+      [
+        "1",
+        "1"
+      ],
+      [
+        "2",
+        null
+      ],
+      [
+        null,
+        "3"
+      ]
+    ]
+  }
+}

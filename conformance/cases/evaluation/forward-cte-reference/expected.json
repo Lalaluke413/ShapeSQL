@@ -1,0 +1,27 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1"
+      ],
+      [
+        "2"
+      ],
+      [
+        "3"
+      ]
+    ]
+  }
+}

@@ -1,10 +1,11 @@
-# ShapeSQL Conformance Corpus
+# Reference Implementation Corpus
 
-This directory contains machine-readable cases for the portable ShapeSQL and
-Shape IR contracts.
+This directory contains source-front-end and direct Shape IR regression cases
+for the Rust reference implementation. The canonical, language-neutral
+end-to-end suite is in [`conformance`](../../conformance/README.md).
 
-The corpus instantiates requirements from `docs/specification`; it does not
-create new language requirements. If a case conflicts with the normative
+These cases still instantiate requirements from `docs/specification`; they do
+not create new language requirements. If a case conflicts with the normative
 documents, the normative documents govern.
 
 `manifest.json` lists each case. A case has:
@@ -26,8 +27,8 @@ An erroneous case records one of these phases:
 
 Error codes and diagnostic text are intentionally absent. An accepted
 front-end case may assert only that source is accepted and valid Shape IR is
-produced. Evaluation cases will additionally describe the expected schema,
-bag, and ordering once the corpus format for typed values is defined.
+produced. Portable catalog, snapshot, typed result, comparison, and process
+interop formats are defined only by the canonical conformance suite.
 
 The initial cases establish that:
 

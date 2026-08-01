@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "catalog.schema.json",
+  "title": "ShapeSQL conformance catalog fixture 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "relations"],
+  "properties": {
+    "format_version": {
+      "const": "0.1"
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    }
+  },
+  "$defs": {
+    "type_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scalar", "nullable"],
+      "properties": {
+        "scalar": {
+          "enum": ["boolean", "int64", "text"]
+        },
+        "nullable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/type_descriptor"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "binding", "fields"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field"
+          }
+        }
+      }
+    }
+  }
+}

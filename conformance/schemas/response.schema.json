@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "response.schema.json",
+  "title": "ShapeSQL conformance adapter response 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_version", "case_id", "outcome"],
+  "properties": {
+    "protocol_version": {
+      "const": "0.1"
+    },
+    "case_id": {
+      "$ref": "manifest.schema.json#/$defs/case_id"
+    },
+    "outcome": {
+      "$ref": "expected.schema.json#/$defs/outcome"
+    }
+  }
+}

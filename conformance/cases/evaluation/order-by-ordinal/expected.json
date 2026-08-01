@@ -1,0 +1,33 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "ordered",
+    "schema": [
+      {
+        "name": "id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "group_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1",
+        "1"
+      ],
+      [
+        "2",
+        "2"
+      ]
+    ]
+  }
+}

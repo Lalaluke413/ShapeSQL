@@ -76,13 +76,17 @@ feature boundary.
 docs/
   specification/       Normative ShapeSQL source and Shape IR contracts
   design/              Non-normative proposals and design rationale
+conformance/            Canonical end-to-end suite and adapter protocol
 src/                    Rust reference implementation
 tests/
-  corpus/               Portable conformance cases and expected outcomes
+  corpus/               Reference-implementation source and IR regressions
 ```
 
-Only `docs/specification` defines conformance. Design notes and implementation
-choices may explain a decision, but they do not change the language contract.
+Only `docs/specification` defines ShapeSQL semantics. The canonical
+[conformance suite](conformance/README.md) instantiates that contract for
+portable end-to-end testing and defines a language-neutral adapter protocol.
+Design notes and implementation choices may explain a decision, but they do
+not change the language contract.
 
 ## Specification
 
@@ -104,7 +108,8 @@ The project currently defines:
 4. the typed relational Shape IR;
 5. the reference source-to-IR lowering;
 6. the Shape IR JSON interchange format; and
-7. an initial corpus of accepted and rejected source and direct IR cases.
+7. a canonical end-to-end conformance suite, plus internal accepted and
+   rejected source and direct IR regression cases.
 
 The reference implementation currently includes a handwritten lexer,
 recursive-descent parser, binder, type checker, source-to-IR lowerer, Shape IR

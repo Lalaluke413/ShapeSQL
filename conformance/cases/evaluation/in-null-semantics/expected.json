@@ -1,0 +1,47 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "value",
+        "type": {
+          "scalar": "int64",
+          "nullable": true
+        }
+      },
+      {
+        "name": "is_member",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        }
+      },
+      {
+        "name": "is_not_member",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1",
+        true,
+        false
+      ],
+      [
+        "2",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null
+      ]
+    ]
+  }
+}

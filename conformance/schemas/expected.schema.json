@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "expected.schema.json",
+  "title": "ShapeSQL conformance expected outcome 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "outcome"],
+  "properties": {
+    "format_version": {
+      "const": "0.1"
+    },
+    "outcome": {
+      "$ref": "#/$defs/outcome"
+    }
+  },
+  "$defs": {
+    "type_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scalar", "nullable"],
+      "properties": {
+        "scalar": {
+          "enum": ["boolean", "int64", "text"]
+        },
+        "nullable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/type_descriptor"
+        }
+      }
+    },
+    "cell": {
+      "type": ["null", "boolean", "string"]
+    },
+    "row": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cell"
+      }
+    },
+    "success": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "collection", "schema", "rows"],
+      "properties": {
+        "kind": {
+          "const": "success"
+        },
+        "collection": {
+          "enum": ["bag", "ordered"]
+        },
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/row"
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "phase"],
+      "properties": {
+        "kind": {
+          "const": "error"
+        },
+        "phase": {
+          "enum": ["lexical", "syntactic", "binding", "typing", "evaluation"]
+        }
+      }
+    },
+    "outcome": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/success"
+        },
+        {
+          "$ref": "#/$defs/error"
+        }
+      ]
+    }
+  }
+}

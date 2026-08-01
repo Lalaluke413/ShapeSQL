@@ -1,0 +1,23 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "name": "unit",
+      "binding": "unit",
+      "fields": []
+    },
+    {
+      "name": "numbers",
+      "binding": "numbers",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ]
+    }
+  ]
+}

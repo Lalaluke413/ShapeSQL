@@ -1,0 +1,78 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "selected_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "label",
+        "type": {
+          "scalar": "text",
+          "nullable": true
+        }
+      },
+      {
+        "name": "parsed_integer",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "parsed_boolean",
+        "type": {
+          "scalar": "boolean",
+          "nullable": false
+        }
+      },
+      {
+        "name": "missing_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": true
+        }
+      },
+      {
+        "name": "membership",
+        "type": {
+          "scalar": "boolean",
+          "nullable": true
+        }
+      },
+      {
+        "name": "group_size",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      }
+    ],
+    "rows": [
+      [
+        "-9223372036854775808",
+        "1:TRUE",
+        "42",
+        true,
+        null,
+        true,
+        "1"
+      ],
+      [
+        "3",
+        null,
+        "42",
+        true,
+        null,
+        true,
+        "1"
+      ]
+    ]
+  }
+}

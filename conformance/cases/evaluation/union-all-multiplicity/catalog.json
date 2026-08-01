@@ -1,0 +1,31 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "name": "left_rows",
+      "binding": "left_rows",
+      "fields": [
+        {
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "right_rows",
+      "binding": "right_rows",
+      "fields": [
+        {
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ]
+    }
+  ]
+}

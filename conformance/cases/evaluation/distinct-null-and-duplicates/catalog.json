@@ -1,0 +1,18 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "name": "values_rows",
+      "binding": "values_rows",
+      "fields": [
+        {
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "manifest.schema.json",
+  "title": "ShapeSQL conformance manifest 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_format_version",
+    "language",
+    "fixture_format_version",
+    "adapter_protocol_version",
+    "cases"
+  ],
+  "properties": {
+    "manifest_format_version": {
+      "const": "0.1"
+    },
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "const": "ShapeSQL"
+        },
+        "version": {
+          "const": "0.1"
+        }
+      }
+    },
+    "fixture_format_version": {
+      "const": "0.1"
+    },
+    "adapter_protocol_version": {
+      "const": "0.1"
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/case"
+      }
+    }
+  },
+  "$defs": {
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))[^\\\\]+$"
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?$"
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "catalog", "snapshot", "expected", "tags"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/case_id"
+        },
+        "source": {
+          "$ref": "#/$defs/path"
+        },
+        "catalog": {
+          "$ref": "#/$defs/path"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/path"
+        },
+        "expected": {
+          "$ref": "#/$defs/path"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/tag"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+SELECT id, value
+FROM rows
+ORDER BY value DESC NULLS LAST, id ASC
+LIMIT 1 OFFSET 1;

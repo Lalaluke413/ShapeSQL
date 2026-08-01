@@ -1,0 +1,19 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "binding": "values_rows",
+      "rows": [
+        [
+          "1"
+        ],
+        [
+          "2"
+        ],
+        [
+          null
+        ]
+      ]
+    }
+  ]
+}

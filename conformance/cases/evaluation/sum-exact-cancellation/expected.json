@@ -1,0 +1,21 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "total",
+        "type": {
+          "scalar": "int64",
+          "nullable": true
+        }
+      }
+    ],
+    "rows": [
+      [
+        "9223372036854775807"
+      ]
+    ]
+  }
+}

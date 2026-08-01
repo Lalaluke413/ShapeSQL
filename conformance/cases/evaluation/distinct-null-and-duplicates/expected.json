@@ -1,0 +1,27 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "value",
+        "type": {
+          "scalar": "int64",
+          "nullable": true
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1"
+      ],
+      [
+        null
+      ],
+      [
+        "2"
+      ]
+    ]
+  }
+}

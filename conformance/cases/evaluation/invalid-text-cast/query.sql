@@ -1,0 +1,2 @@
+SELECT CAST(' 1' AS INT64) AS value
+FROM unit;

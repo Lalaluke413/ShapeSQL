@@ -1,0 +1,22 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "binding": "unit",
+      "rows": [
+        []
+      ]
+    },
+    {
+      "binding": "numbers",
+      "rows": [
+        [
+          "1"
+        ],
+        [
+          "0"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "name": "rows",
+      "binding": "rows",
+      "fields": [
+        {
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "name": "value",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ]
+    }
+  ]
+}

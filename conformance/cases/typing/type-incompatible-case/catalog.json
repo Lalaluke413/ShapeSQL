@@ -1,0 +1,52 @@
+{
+  "format_version": "0.1",
+  "relations": [
+    {
+      "name": "outer_rows",
+      "binding": "outer_rows",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "inner_rows",
+      "binding": "inner_rows",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "name": "group_id",
+          "type": {
+            "scalar": "int64",
+            "nullable": false
+          }
+        },
+        {
+          "name": "flag",
+          "type": {
+            "scalar": "boolean",
+            "nullable": true
+          }
+        }
+      ]
+    }
+  ]
+}

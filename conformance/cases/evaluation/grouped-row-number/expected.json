@@ -1,0 +1,42 @@
+{
+  "format_version": "0.1",
+  "outcome": {
+    "kind": "success",
+    "collection": "bag",
+    "schema": [
+      {
+        "name": "group_id",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "group_size",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      },
+      {
+        "name": "position",
+        "type": {
+          "scalar": "int64",
+          "nullable": false
+        }
+      }
+    ],
+    "rows": [
+      [
+        "1",
+        "2",
+        "1"
+      ],
+      [
+        "2",
+        "1",
+        "2"
+      ]
+    ]
+  }
+}
