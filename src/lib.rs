@@ -3,6 +3,7 @@
 pub mod ast;
 mod bind;
 mod catalog;
+mod evaluation;
 mod frontend;
 pub mod hir;
 mod identity;
@@ -17,6 +18,10 @@ mod types;
 
 pub use bind::{BindError, BindErrorKind, bind};
 pub use catalog::{Catalog, CatalogField, CatalogRelation, RelationBinding};
+pub use evaluation::{
+    EvaluateError, EvaluationError, EvaluationErrorKind, EvaluationResult, InputError,
+    InputErrorKind, InputField, InputRelation, Row, Snapshot, SnapshotError, Value, evaluate,
+};
 pub use frontend::{AnalysisError, CompileError, ParsedProgram, analyze, compile, parse_owned};
 pub use identity::{CteId, FieldId, RelationOccurrenceId};
 pub use lexer::{LexError, LexErrorKind, Span, Token, TokenKind, lex};

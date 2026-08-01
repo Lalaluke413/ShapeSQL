@@ -106,10 +106,11 @@ The project currently defines:
 6. the Shape IR JSON interchange format; and
 7. an initial corpus of accepted and rejected source and direct IR cases.
 
-The reference implementation currently includes a handwritten lexer and
-recursive-descent parser for the complete ShapeSQL 0.1 grammar. The binder,
-type checker, source-to-IR lowerer, interchange decoder, Shape IR validator,
-and evaluator remain to be implemented.
+The reference implementation currently includes a handwritten lexer,
+recursive-descent parser, binder, type checker, source-to-IR lowerer, Shape IR
+validator, strict interchange encoder and decoder, and a fully materialized
+finite evaluator. The evaluator is a semantic oracle for Shape IR rather than
+an optimized execution engine.
 
 ## License
 
