@@ -5,13 +5,13 @@ SELECT
     ROW_NUMBER() OVER (
         PARTITION BY group_id
         ORDER BY group_id ASC, id ASC, value ASC
-    ) AS row_number,
+    ) AS "row_number",
     RANK() OVER (
         PARTITION BY group_id
         ORDER BY value DESC
-    ) AS rank,
+    ) AS "rank",
     DENSE_RANK() OVER (
         PARTITION BY group_id
         ORDER BY value DESC
-    ) AS dense_rank
+    ) AS "dense_rank"
 FROM rows;
